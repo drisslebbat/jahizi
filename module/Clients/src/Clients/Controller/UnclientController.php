@@ -21,7 +21,9 @@ class UnclientController extends AbstractActionController
     
     public function afficherAction()
     {
-    	return array();
+    	$view=new ViewModel();
+    	$view->setTemplate('clients/unclient/afficherClient.phtml');
+    	return $view;
     }
 	
     public function ajouterAction()
