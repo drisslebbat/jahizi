@@ -10,18 +10,37 @@
 namespace Clients\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-
+use Zend\View\Model\ViewModel;
 class UnclientController extends AbstractActionController
 {
     public function indexAction()
     {
-        return array();
+      $view = new ViewModel();
+      return $view;
     }
-
-    public function fooAction()
+    
+    public function afficherAction()
     {
-        // This shows the :controller and :action parameters in default route
-        // are working when you browse to /unclient/unclient/foo
-        return array();
+    	return array();
+    }
+	
+    public function ajouterAction()
+    {
+    	return array();
+    }
+    
+    public function fiableAction()
+    {
+    	return array();
+    }
+    
+    public function modifierAction()
+    {
+    	return array();
+    }
+    
+    public function supprimerAction()
+    {
+    	return array();
     }
 }
