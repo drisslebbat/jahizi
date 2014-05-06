@@ -23,32 +23,35 @@ class UnclientController extends AbstractActionController
     public function afficherAction()
     {
     	$view=new ViewModel();
-    	$view->setTemplate('clients/unclient/afficherClient.phtml');
+    	$view->setTemplate('clients/unclient/afficherClient');
     	return $view;
     }
 	
     public function ajouterAction()
     {
     	$view=new ViewModel();
-    	$view->setTemplate('clients/unclient/ajouter.phtml');
+    	$view->setTemplate('clients/unclient/ajouter');
     	return $view;
     }
     
     public function fiableAction()
     {
     	$view=new ViewModel();
-    	$view->setTemplate('clients/unclient/fiabiliteClient.phtml');
+    	$view->setTemplate('clients/unclient/fiabliliteClient.phtml');
     	return $view;
     }
     
     public function modifierAction()
     {
     	$view=new ViewModel();
-    	$view->setTemplate('clients/unclient/modifierClient.phtml')
+    	$view->setTemplate('clients/unclient/modifierClient.phtml');
+    	return $view;
     }
     
     public function supprimerAction()
     {
-    	return array();
+    	$view=new ViewModel();
+    	$view->setTemplate('clients/unclient/supprimerClient.phtml');
+    	return $view;
     }
 }
