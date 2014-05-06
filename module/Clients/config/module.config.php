@@ -3,6 +3,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Clients\Controller\Unclient' => 'Clients\Controller\UnclientController',
+        		'Clients\Controller\clients' => 'Clients\Controller\clientsController',
+        		
         ),
     ),
     'router' => array(
