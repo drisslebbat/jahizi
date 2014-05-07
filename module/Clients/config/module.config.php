@@ -1,5 +1,4 @@
 <?php
-use Clients;
 return array(
     'controllers' => array(
     		'invokables' => array(

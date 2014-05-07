@@ -106,9 +106,9 @@ class Client
     private $adresse;
 
     /**
-     * @var \Clients\\Entity\Entreprise
+     * @var \Clients\Entity\Entrepris
      *
-     * @ORM\ManyToOne(targetEntity="Clients\\Entity\Entreprise")
+     * @ORM\ManyToOne(targetEntity="Clients\Entity\Entrepris")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Ent_nom", referencedColumnName="nom")
      * })
@@ -406,10 +406,10 @@ class Client
     /**
      * Set entNom
      *
-     * @param \Clients\\Entity\Entreprise $entNom
+     * @param \Clients\Entity\Entrepris $entNom
      * @return Client
      */
-    public function setEntNom(\Clients\Entity\Entreprise $entNom = null)
+    public function setEntNom(\Clients\Entity\Entrepris $entNom = null)
     {
         $this->entNom = $entNom;
     
@@ -419,7 +419,7 @@ class Client
     /**
      * Get entNom
      *
-     * @return \Clients\\Entity\Entreprise 
+     * @return \Clients\Entity\Entrepris 
      */
     public function getEntNom()
     {
