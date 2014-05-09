@@ -11,6 +11,8 @@ namespace Clients\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Clients\Entity;
+
 
 class UnclientController extends AbstractActionController
 {
