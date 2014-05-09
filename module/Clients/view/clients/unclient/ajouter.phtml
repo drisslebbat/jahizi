@@ -1,3 +1,12 @@
-<strong>Module:</strong>        Clients &raquo;
-<strong>Controller:</strong>    Unclient &raquo;
-<strong>Action:</strong>        index
+<?php 
+$title='Ajouter un Nouveau Client';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title);?></h1>
+<?php 
+$form->setAttribute('action', $this->url('clients',array('controller'=>'UnClient','action' => 'add')));
+$form->prepare();
+echo $this->form()->openTag();
+echo $this->formCollection($form);
+echo $this->form()->closeTag();
+?>

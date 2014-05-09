@@ -12,6 +12,7 @@ namespace Clients\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Clients\Entity;
+use Clients\Form\ClientForm;
 
 
 class UnclientController extends AbstractActionController
@@ -31,9 +32,9 @@ class UnclientController extends AbstractActionController
 	
     public function ajouterAction()
     {
-    	$view=new ViewModel();
-    	$view->setTemplate('clients/unclient/ajouter');
-    	return $view;
+    	$form=new ClientForm();
+    	$form->get('submit')->setValue('ajouter');
+    	return array('form'=>$form);
     }
     
     public function fiableAction()

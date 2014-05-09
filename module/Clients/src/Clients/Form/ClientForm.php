@@ -1,5 +1,5 @@
 <?php
-namespace Client\Form;
+namespace Clients\Form;
 
 use Zend\Captcha;
 use Zend\Form\Element;
@@ -33,7 +33,7 @@ class ClientForm extends Form
 						'required' => 'required',
 				),
 				'options' => array(
-						'label' => 'Prénom',
+						'label' => 'Prenom',
 				),
 		));
 
@@ -87,7 +87,7 @@ class ClientForm extends Form
 						'required' => 'required',
 				),
 				'options' => array(
-						'label' => 'Nationalité',
+						'label' => 'Nationalite',
 				),
 		));
 
@@ -122,7 +122,7 @@ class ClientForm extends Form
 				'name' => 'cin',
 				'type' => 'Zend\Form\Element\Text',
 				'attributes' => array(
-						'placeholder' => "code d'identité natlional",
+						'placeholder' => "code d'identite natlional",
             ),
             'options' => array(
                 'label' => 'CIN',
@@ -151,7 +151,7 @@ class ClientForm extends Form
                 'step' => '1',
             ),
             'options' => array(
-                'label' => 'Date délivrance permis',
+                'label' => 'Date delivrance permis',
             ),
         ));
 
@@ -209,7 +209,7 @@ class ClientForm extends Form
                 'required' => 'required',
             ),
             'options' => array(
-                'label' => 'Lieu délivrance permis',
+                'label' => 'Lieu delivrance permis',
             ),
         ));
 
@@ -223,7 +223,7 @@ class ClientForm extends Form
                 'step' => '1',
             ),
             'options' => array(
-                'label' => 'Date délivrance CIN',
+                'label' => 'Date delivrance CIN',
             ),
         ));
 
@@ -238,7 +238,7 @@ class ClientForm extends Form
                 'step' => '1',
             ),
             'options' => array(
-                'label' => 'Date délivrance passport',
+                'label' => 'Date delivrance passport',
             ),
         ));
 
@@ -256,5 +256,14 @@ class ClientForm extends Form
             'name' => 'csrf',
             'type' => 'Zend\Form\Element\Csrf',
 				));
+        
+        $this->add(array(
+        		'name' => 'submit',
+        		'type' => 'Submit',
+        		'attributes' => array(
+        				'value' => 'Go',
+        				'id' => 'submitbutton',
+        ),
+        ));
 	}
 	}
