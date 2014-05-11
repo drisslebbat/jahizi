@@ -13,7 +13,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Clients\Entity;
 use Clients\Form\ClientForm;
-
+use Zend\InputFilter\InputFilter;
 
 class UnclientController extends AbstractActionController
 {
@@ -32,9 +32,22 @@ class UnclientController extends AbstractActionController
 	
     public function ajouterAction()
     {
-    	$form=new ClientForm();
-    	$form->get('submit')->setValue('ajouter');
-    	return array('form'=>$form);
+    	$form = new ClientForm();
+    	$pos= array();
+    	if ($this->request->isPost()) {
+    		$post = $this->request->getPost();
+    		$inputFilter = new InputFilter();
+    		$form->setInputFilter($inputFilter);
+    		$form->setData($post);
+    		if ($form->isValid()) {
+    			$pos=$form->getData();
+    			$pos=$this->request->getPost();
+    			$viewModel = new ViewModel(array('form' =>$form,'donne'=>$pos));
+    			return $viewModel;
+    		}
+    	}
+    	$viewModel = new ViewModel(array('form' =>$form, 'donne'=>gettype($pos)));
+    	return $viewModel;
     }
     
     public function fiableAction()
@@ -57,4 +70,6 @@ class UnclientController extends AbstractActionController
     	$view->setTemplate('clients/unclient/supprimerClient.phtml');
     	return $view;
     }
+    
+    
 }

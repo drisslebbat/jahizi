@@ -10,9 +10,6 @@ class ClientForm extends Form
 	public function __construct($name = null)
 	{
 		parent::__construct('client');
-
-		$this->setAttribute('method','post');
-
 		$this->add(array(
 				'name' => 'nom',
 				'type' => 'Zend\Form\Element\Text',
@@ -72,7 +69,6 @@ class ClientForm extends Form
 				'type' => 'Zend\Form\Element\Text',
 				'attributes' => array(
 						'placeholder' => 'Type something...',
-						'required' => 'required',
 				),
 				'options' => array(
 						'label' => 'Entreprise',
@@ -92,14 +88,11 @@ class ClientForm extends Form
 		));
 
 		$this->add(array(
-				'name' => 'date naissance',
+				'name' => 'date_naissance',
 				'type' => 'Zend\Form\Element\Date',
 				'attributes' => array(
 						'placeholder' => 'Type something...',
-						'required' => 'required',
-						'min' => '1970-01-01',
-						'max' => 2014-4-4,
-						'step' => '1',
+						
 				),
 				'options' => array(
 						'label' => 'Date de naissance',
@@ -111,7 +104,7 @@ class ClientForm extends Form
 				'type' => 'Zend\Form\Element\Text',
 				'attributes' => array(
 						'placeholder' => 'Type something...',
-						'required' => 'required',
+						
 				),
 				'options' => array(
 						'label' => 'numero de passport',
@@ -134,7 +127,7 @@ class ClientForm extends Form
             'type' => 'Zend\Form\Element\Text',
             'attributes' => array(
                 'placeholder' => 'Type something...',
-                'required' => 'required',
+                
             ),
             'options' => array(
                 'label' => 'numero de permis',
@@ -146,9 +139,7 @@ class ClientForm extends Form
             'type' => 'Zend\Form\Element\Date',
             'attributes' => array(
                 'placeholder' => 'Type something...',
-                'min' => '1970-01-01',
-                'max' => 2014-4-4,
-                'step' => '1',
+               
             ),
             'options' => array(
                 'label' => 'Date delivrance permis',
@@ -160,7 +151,7 @@ class ClientForm extends Form
             'type' => 'Zend\Form\Element\Text',
             'attributes' => array(
                 'placeholder' => 'Type something...',
-                'required' => 'required',
+                
             ),
             'options' => array(
                 'label' => 'Adresse',
@@ -172,7 +163,7 @@ class ClientForm extends Form
             'type' => 'Zend\Form\Element\Text',
             'attributes' => array(
                 'placeholder' => 'Type something...',
-                'required' => 'required',
+                
             ),
             'options' => array(
                 'label' => 'Raison social',
@@ -206,7 +197,7 @@ class ClientForm extends Form
             'type' => 'Zend\Form\Element\Text',
             'attributes' => array(
                 'placeholder' => 'Type something...',
-                'required' => 'required',
+                
             ),
             'options' => array(
                 'label' => 'Lieu delivrance permis',
@@ -218,9 +209,7 @@ class ClientForm extends Form
             'type' => 'Zend\Form\Element\Date',
             'attributes' => array(
                 'placeholder' => 'Type something...',
-                'min' => '1970-01-01',
-                'max' => 2014-4-4,
-                'step' => '1',
+                
             ),
             'options' => array(
                 'label' => 'Date delivrance CIN',
@@ -232,10 +221,8 @@ class ClientForm extends Form
             'type' => 'Zend\Form\Element\Date',
             'attributes' => array(
                 'placeholder' => 'Type something...',
-                'required' => 'required',
-                'min' => '1970-01-01',
-                'max' => 2014-4-4,
-                'step' => '1',
+            
+                
             ),
             'options' => array(
                 'label' => 'Date delivrance passport',
@@ -252,10 +239,6 @@ class ClientForm extends Form
             ),
         ));
 
-        $this->add(array(
-            'name' => 'csrf',
-            'type' => 'Zend\Form\Element\Csrf',
-				));
         
         $this->add(array(
         		'name' => 'submit',

@@ -1,12 +1,17 @@
-<?php 
-$title='Ajouter un Nouveau Client';
-$this->headTitle($title);
-?>
-<h1><?php echo $this->escapeHtml($title);?></h1>
-<?php 
-$form->setAttribute('action', $this->url('clients',array('controller'=>'UnClient','action' => 'add')));
+<?php
+$form = $this->form;
+$form->get('submit')->setValue('Ajouter');
 $form->prepare();
-echo $this->form()->openTag();
+$form->setAttribute('action', $this->url(NULL,array('controller'=>'Unclient', 'action' => 'ajouter')));
+$form->setAttribute('method', 'post');
+echo $this->form()->openTag($form);
 echo $this->formCollection($form);
-echo $this->form()->closeTag();
-?>
+echo $this->form()->closeTag($form);
+var_dump($this->donne->toArray());
+
+
+
+
+	
+
+
