@@ -131,9 +131,9 @@ class Entrepris
 	}
 	public function create($data) {
 		$this->setNom($data['Entreprise']);
-		$this->setRaisonsocial($raisonsocial['Raison_social']);
-		$this->setRc(['rc']);
-		$this->setInterFin(['inter_fin']);
+		$this->setRaisonsocial($data['Raison_social']);
+		$this->setRc($data['rc']);
+		$this->setInterFin($data['inter_fin']);
 	}
 
 }

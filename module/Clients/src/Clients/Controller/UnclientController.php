@@ -14,6 +14,7 @@ use Zend\View\Model\ViewModel;
 use Clients\Entity;
 use Clients\Form\ClientForm;
 use Zend\InputFilter\InputFilter;
+use Clients\Entity\Entrepris;
 
 class UnclientController extends AbstractActionController
 {
@@ -42,7 +43,13 @@ class UnclientController extends AbstractActionController
     		if ($form->isValid()) {
     			$pos=$form->getData();
     			$pos=$this->request->getPost();
-    			$viewModel = new ViewModel(array('form' =>$form,'donne'=>$pos));
+    			$data=$pos->toArray();
+    			$entrepris=new Entrepris();
+    			$entrepris->create($data);
+    			$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+    			$objectManager->persist($entrepris);
+    			$objectManager->flush();
+    			$viewModel = new ViewModel(array('form' =>$form,'donne'=>$entrepris));
     			return $viewModel;
     		}
     	}
