@@ -122,4 +122,18 @@ class Entrepris
     {
         return $this->interFin;
     }
+    
+	/**
+	 * @param string $nom
+	 */
+	public function setNom($nom) {
+		$this->nom = $nom;
+	}
+	public function create($data) {
+		$this->setNom($data['Entreprise']);
+		$this->setRaisonsocial($raisonsocial['Raison_social']);
+		$this->setRc(['rc']);
+		$this->setInterFin(['inter_fin']);
+	}
+
 }
