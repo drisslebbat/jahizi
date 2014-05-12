@@ -17,7 +17,7 @@ class Entrepris
      *
      * @ORM\Column(name="nom", type="string", length=254, nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $nom;
 
@@ -131,7 +131,7 @@ class Entrepris
 	}
 	public function create($data) {
 		$this->setNom($data['Entreprise']);
-		$this->setRaisonsocial($data['Raison_social']);
+		$this->setRaisonsocial($data['Raison social']);
 		$this->setRc($data['rc']);
 		$this->setInterFin($data['inter_fin']);
 	}

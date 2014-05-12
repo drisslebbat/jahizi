@@ -43,9 +43,8 @@ class UnclientController extends AbstractActionController
     		if ($form->isValid()) {
     			$pos=$form->getData();
     			$pos=$this->request->getPost();
-    			$data=$pos->toArray();
     			$entrepris=new Entrepris();
-    			$entrepris->create($data);
+    			$entrepris->create($form->getData());
     			$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
     			$objectManager->persist($entrepris);
     			$objectManager->flush();
