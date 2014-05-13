@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Fiabilite
  *
- * @ORM\Table(name="fiabilite")
+ * @ORM\Table(name="fiabilite", indexes={@ORM\Index(name="client", columns={"client"})})
  * @ORM\Entity
  */
 class Fiabilite
@@ -41,6 +41,16 @@ class Fiabilite
      * @ORM\Column(name="date", type="datetime", nullable=false)
      */
     private $date;
+
+    /**
+     * @var \Clients\Entity\Client
+     *
+     * @ORM\ManyToOne(targetEntity="Clients\Entity\Client")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="client", referencedColumnName="idClient")
+     * })
+     */
+    private $client;
 
 
 
@@ -121,5 +131,28 @@ class Fiabilite
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set client
+     *
+     * @param \Clients\Entity\Client $client
+     * @return Fiabilite
+     */
+    public function setClient(\Clients\Entity\Client $client = null)
+    {
+        $this->client = $client;
+    
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \Clients\Entity\Client 
+     */
+    public function getClient()
+    {
+        return $this->client;
     }
 }

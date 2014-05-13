@@ -159,7 +159,7 @@ class ClientForm extends Form
         ));
 
         $this->add(array(
-            'name' => 'Raison social',
+            'name' => 'Raison_social',
             'type' => 'Zend\Form\Element\Text',
             'attributes' => array(
                 'placeholder' => 'Type something...',

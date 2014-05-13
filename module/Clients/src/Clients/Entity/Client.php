@@ -6,7 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Client
- * @ORM\Table(name="client", indexes={@ORM\Index(name="FK_association17", columns={"Ent_nom"})})
+ *
+ * @ORM\Table(name="client", indexes={@ORM\Index(name="code_pays", columns={"code_pays"}), @ORM\Index(name="Ent_nom", columns={"Ent_nom"})})
  * @ORM\Entity
  */
 class Client
@@ -103,6 +104,37 @@ class Client
      * @ORM\Column(name="adresse", type="string", length=254, nullable=false)
      */
     private $adresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email_client", type="string", length=40, nullable=false)
+     */
+    private $emailClient;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lieu_del_permis", type="string", length=30, nullable=false)
+     */
+    private $lieuDelPermis;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_del_CIN", type="date", nullable=false)
+     */
+    private $dateDelCin;
+
+    /**
+     * @var \Clients\Entity\Nationalite
+     *
+     * @ORM\ManyToOne(targetEntity="Clients\Entity\Nationalite")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="code_pays", referencedColumnName="code")
+     * })
+     */
+    private $codePays;
 
     /**
      * @var \Clients\Entity\Entrepris
@@ -400,6 +432,98 @@ class Client
     public function getAdresse()
     {
         return $this->adresse;
+    }
+
+    /**
+     * Set emailClient
+     *
+     * @param string $emailClient
+     * @return Client
+     */
+    public function setEmailClient($emailClient)
+    {
+        $this->emailClient = $emailClient;
+    
+        return $this;
+    }
+
+    /**
+     * Get emailClient
+     *
+     * @return string 
+     */
+    public function getEmailClient()
+    {
+        return $this->emailClient;
+    }
+
+    /**
+     * Set lieuDelPermis
+     *
+     * @param string $lieuDelPermis
+     * @return Client
+     */
+    public function setLieuDelPermis($lieuDelPermis)
+    {
+        $this->lieuDelPermis = $lieuDelPermis;
+    
+        return $this;
+    }
+
+    /**
+     * Get lieuDelPermis
+     *
+     * @return string 
+     */
+    public function getLieuDelPermis()
+    {
+        return $this->lieuDelPermis;
+    }
+
+    /**
+     * Set dateDelCin
+     *
+     * @param \DateTime $dateDelCin
+     * @return Client
+     */
+    public function setDateDelCin($dateDelCin)
+    {
+        $this->dateDelCin = $dateDelCin;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateDelCin
+     *
+     * @return \DateTime 
+     */
+    public function getDateDelCin()
+    {
+        return $this->dateDelCin;
+    }
+
+    /**
+     * Set codePays
+     *
+     * @param \Clients\Entity\Nationalite $codePays
+     * @return Client
+     */
+    public function setCodePays(\Clients\Entity\Nationalite $codePays = null)
+    {
+        $this->codePays = $codePays;
+    
+        return $this;
+    }
+
+    /**
+     * Get codePays
+     *
+     * @return \Clients\Entity\Nationalite 
+     */
+    public function getCodePays()
+    {
+        return $this->codePays;
     }
 
     /**
