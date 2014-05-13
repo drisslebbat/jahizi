@@ -1,0 +1,56 @@
+<?php
+
+namespace Clients\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Fiabilite
+ *
+ * @ORM\Table(name="fiabilite", indexes={@ORM\Index(name="client", columns={"client"})})
+ * @ORM\Entity
+ */
+class Fiabilite
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="statut", type="string", length=254, nullable=false)
+     */
+    private $statut;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="remarque", type="string", length=254, nullable=true)
+     */
+    private $remarque;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=false)
+     */
+    private $date;
+
+    /**
+     * @var \Clients\Entity\Client
+     *
+     * @ORM\ManyToOne(targetEntity="Clients\Entity\Client")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="client", referencedColumnName="idClient")
+     * })
+     */
+    private $client;
+
+
+}

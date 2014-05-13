@@ -1,0 +1,46 @@
+<?php
+
+namespace Clients\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Entrepris
+ *
+ * @ORM\Table(name="entrepris")
+ * @ORM\Entity
+ */
+class Entrepris
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=254, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="raisonSocial", type="string", length=254, nullable=true)
+     */
+    private $raisonsocial;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rc", type="string", length=254, nullable=true)
+     */
+    private $rc;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="inter_fin", type="string", length=254, nullable=true)
+     */
+    private $interFin;
+
+
+}

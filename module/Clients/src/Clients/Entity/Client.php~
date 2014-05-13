@@ -1,0 +1,150 @@
+<?php
+
+namespace Clients\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Client
+ *
+ * @ORM\Table(name="client", indexes={@ORM\Index(name="code_pays", columns={"code_pays"}), @ORM\Index(name="Ent_nom", columns={"Ent_nom"})})
+ * @ORM\Entity
+ */
+class Client
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idClient", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idclient;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cin", type="string", length=254, nullable=true)
+     */
+    private $cin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=254, nullable=false)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=254, nullable=false)
+     */
+    private $prenom;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateNaissance", type="datetime", nullable=true)
+     */
+    private $datenaissance;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="numPassport", type="string", length=254, nullable=true)
+     */
+    private $numpassport;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telephone", type="string", length=254, nullable=false)
+     */
+    private $telephone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=254, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="autres", type="string", length=254, nullable=true)
+     */
+    private $autres;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="remarques", type="string", length=254, nullable=true)
+     */
+    private $remarques;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="numPermis", type="string", length=254, nullable=false)
+     */
+    private $numpermis;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateDelPermis", type="date", nullable=true)
+     */
+    private $datedelpermis;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=254, nullable=false)
+     */
+    private $adresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email_client", type="string", length=40, nullable=false)
+     */
+    private $emailClient;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lieu_del_permis", type="string", length=30, nullable=false)
+     */
+    private $lieuDelPermis;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_del_CIN", type="date", nullable=false)
+     */
+    private $dateDelCin;
+
+    /**
+     * @var \Clients\Entity\Nationalite
+     *
+     * @ORM\ManyToOne(targetEntity="Clients\Entity\Nationalite")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="code_pays", referencedColumnName="code")
+     * })
+     */
+    private $codePays;
+
+    /**
+     * @var \Clients\Entity\Entrepris
+     *
+     * @ORM\ManyToOne(targetEntity="Clients\Entity\Entrepris")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Ent_nom", referencedColumnName="nom")
+     * })
+     */
+    private $entNom;
+
+
+}
