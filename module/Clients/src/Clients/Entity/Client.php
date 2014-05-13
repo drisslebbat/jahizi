@@ -550,14 +550,14 @@ class Client
     	$this->datenaissance      = (isset($data['date_naissance'])) ? $data['date_naissance'] : null;
     	$this->numpassport      = (isset($data['passport'])) ? $data['passport'] : null;
     	$this->cin      = (isset($data['cin'])) ? $data['cin'] : null;
-    	$this->numpermis      = (isset($data['num_permis '])) ? $data['num_permis'] : null;
+    	$this->numpermis      = (isset($data['num_permis'])) ? $data['num_permis'] : null;
     	$this->datedelpermis      = (isset($data['date_permis'])) ? $data['date_permis'] : null;
     	$this->adresse      = (isset($data['Adresse'])) ? $data['Adresse'] : null;
     	$this->lieuDelPermis      = (isset($data['Lieu_permis'])) ? $data['Lieu_permis'] : null;
     	$this->dateDelCin      = (isset($data['Date_cin'])) ? $data['Date_cin'] : null;
     	$this->datedelpassport     = (isset($data['Date_passport'])) ? $data['Date_passport'] : null;
     	$this->remarques     = (isset($data['remarque'])) ? $data['remarque'] : null;
-    	$this->entNom     = (isset($data['Entreprise'])) ? $data['prenom'] : null;
+    	$this->entNom     = (isset($data['Entreprise'])) ? $data['Entreprise'] : null;
     	$this->telephone   = (isset($data['tel'])) ? $data['tel'] : null;
     	
     
