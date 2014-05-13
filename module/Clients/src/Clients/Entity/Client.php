@@ -70,13 +70,7 @@ class Client
      */
     private $type;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="autres", type="string", length=254, nullable=true)
-     */
-    private $autres;
-
+  
     /**
      * @var string
      *
@@ -97,6 +91,13 @@ class Client
      * @ORM\Column(name="dateDelPermis", type="date", nullable=true)
      */
     private $datedelpermis;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateDelPassport", type="date", nullable=true)
+     */
+    private $datedelpassport;
 
     /**
      * @var string
@@ -149,6 +150,20 @@ class Client
 
 
     /**
+	 * @return the $datedelpassport
+	 */
+	public function getDatedelpassport() {
+		return $this->datedelpassport;
+	}
+
+	/**
+	 * @param DateTime $datedelpassport
+	 */
+	public function setDatedelpassport($datedelpassport) {
+		$this->datedelpassport = $datedelpassport;
+	}
+
+	/**
      * Get idclient
      *
      * @return integer 
@@ -319,29 +334,7 @@ class Client
         return $this->type;
     }
 
-    /**
-     * Set autres
-     *
-     * @param string $autres
-     * @return Client
-     */
-    public function setAutres($autres)
-    {
-        $this->autres = $autres;
-    
-        return $this;
-    }
-
-    /**
-     * Get autres
-     *
-     * @return string 
-     */
-    public function getAutres()
-    {
-        return $this->autres;
-    }
-
+  
     /**
      * Set remarques
      *
@@ -549,5 +542,24 @@ class Client
         return $this->entNom;
     }
     
+    public function create($data) {
+    	$this->nom       = (isset($data['nom'])) ? $data['nom'] : null;
+    	$this->prenom      = (isset($data['prenom'])) ? $data['prenom'] : null;
+    	$this->emailClient      = (isset($data['email'])) ? $data['email'] : null;
+    	$this->type      = (isset($data['type'])) ? $data['type'] : null;
+    	$this->datenaissance      = (isset($data['date_naissance'])) ? $data['date_naissance'] : null;
+    	$this->numpassport      = (isset($data['passport'])) ? $data['passport'] : null;
+    	$this->cin      = (isset($data['cin'])) ? $data['cin'] : null;
+    	$this->numpermis      = (isset($data['num_permis '])) ? $data['num_permis'] : null;
+    	$this->datedelpermis      = (isset($data['date_permis'])) ? $data['date_permis'] : null;
+    	$this->adresse      = (isset($data['Adresse'])) ? $data['Adresse'] : null;
+    	$this->lieuDelPermis      = (isset($data['Lieu_permis'])) ? $data['Lieu_permis'] : null;
+    	$this->dateDelCin      = (isset($data['Date_cin'])) ? $data['Date_cin'] : null;
+    	$this->datedelpassport     = (isset($data['Date_passport'])) ? $data['Date_passport'] : null;
+    	$this->remarques     = (isset($data['remarque'])) ? $data['remarque'] : null;
+    	$this->entNom     = (isset($data['Entreprise'])) ? $data['prenom'] : null;
+    	$this->telephone   = (isset($data['tel'])) ? $data['tel'] : null;
+    	
     
+    }
 }

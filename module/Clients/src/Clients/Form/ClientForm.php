@@ -182,6 +182,17 @@ class ClientForm extends Form
         ));
 
         $this->add(array(
+        		'name' => 'tel',
+        		'type' => 'Zend\Form\Element\Text',
+        		'attributes' => array(
+        				'placeholder' => 'Type something...',
+        		),
+        		'options' => array(
+        				'label' => 'Numero de Tel',
+        		),
+        ));
+
+        $this->add(array(
             'name' => 'rc',
             'type' => 'Zend\Form\Element\Text',
             'attributes' => array(

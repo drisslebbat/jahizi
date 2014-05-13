@@ -17,7 +17,7 @@ class Entrepris
      *
      * @ORM\Column(name="nom", type="string", length=254, nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $nom;
 
@@ -55,6 +55,13 @@ class Entrepris
     }
 
     /**
+	 * @param string $nom
+	 */
+	public function setNom($nom) {
+		$this->nom = $nom;
+	}
+
+	/**
      * Set raisonsocial
      *
      * @param string $raisonsocial

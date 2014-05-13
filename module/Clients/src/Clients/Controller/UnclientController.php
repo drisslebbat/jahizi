@@ -43,12 +43,12 @@ class UnclientController extends AbstractActionController
     		if ($form->isValid()) {
     			$pos=$form->getData();
     			$pos=$this->request->getPost();
-    			$entrepris=new Entrepris();
-    			$entrepris->create($form->getData());
-    			$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-    			$objectManager->persist($entrepris);
-    			$objectManager->flush();
-    			$viewModel = new ViewModel(array('form' =>$form,'donne'=>$entrepris));
+//     			$entrepris=new Entrepris();
+//     			$entrepris->create($form->getData());
+//     			$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+//     			$objectManager->persist($entrepris);
+//     			$objectManager->flush();
+    			$viewModel = new ViewModel(array('form' =>$form,'donne'=>$pos));
     			return $viewModel;
     		}
     	}
