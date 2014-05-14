@@ -51,8 +51,9 @@ class UnclientController extends AbstractActionController
     			$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
    			$objectManager->persist($client);
 	   			$objectManager->flush();
+	   			$id=$client->getIdclient();
 
-    			$viewModel = new ViewModel(array('form' =>$form,'donne'=>$client));
+    			$viewModel = new ViewModel(array('form' =>$form,'donne'=>$id));
     			return $viewModel;
     		}
     	}
