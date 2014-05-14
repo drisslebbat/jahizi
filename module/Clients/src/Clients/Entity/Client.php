@@ -24,6 +24,13 @@ class Client
     /**
      * @var string
      *
+     * @ORM\Column(name="Ent_nom", type="string", length=254, nullable=true)
+     */
+    private $entNom;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="cin", type="string", length=254, nullable=true)
      */
     private $cin;
@@ -45,7 +52,7 @@ class Client
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateNaissance", type="datetime", nullable=true)
+     * @ORM\Column(name="dateNaissance", type="date", nullable=true)
      */
     private $datenaissance;
 
@@ -70,7 +77,6 @@ class Client
      */
     private $type;
 
-  
     /**
      * @var string
      *
@@ -91,13 +97,6 @@ class Client
      * @ORM\Column(name="dateDelPermis", type="date", nullable=true)
      */
     private $datedelpermis;
-    
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateDelPassport", type="date", nullable=true)
-     */
-    private $datedelpassport;
 
     /**
      * @var string
@@ -114,6 +113,13 @@ class Client
     private $emailClient;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="code_pays", type="integer", nullable=false)
+     */
+    private $codePays;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="lieu_del_permis", type="string", length=30, nullable=false)
@@ -123,47 +129,20 @@ class Client
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_del_CIN", type="date", nullable=false)
+     * @ORM\Column(name="date_del_CIN", type="date", nullable=true)
      */
     private $dateDelCin;
 
     /**
-     * @var \Clients\Entity\Nationalite
+     * @var \DateTime
      *
-     * @ORM\ManyToOne(targetEntity="Clients\Entity\Nationalite")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="code_pays", referencedColumnName="code")
-     * })
+     * @ORM\Column(name="dateDelPassport", type="date", nullable=true)
      */
-    private $codePays;
-
-    /**
-     * @var \Clients\Entity\Entrepris
-     *
-     * @ORM\ManyToOne(targetEntity="Clients\Entity\Entrepris")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Ent_nom", referencedColumnName="nom")
-     * })
-     */
-    private $entNom;
+    private $datedelpassport;
 
 
 
     /**
-	 * @return the $datedelpassport
-	 */
-	public function getDatedelpassport() {
-		return $this->datedelpassport;
-	}
-
-	/**
-	 * @param DateTime $datedelpassport
-	 */
-	public function setDatedelpassport($datedelpassport) {
-		$this->datedelpassport = $datedelpassport;
-	}
-
-	/**
      * Get idclient
      *
      * @return integer 
@@ -171,6 +150,29 @@ class Client
     public function getIdclient()
     {
         return $this->idclient;
+    }
+
+    /**
+     * Set entNom
+     *
+     * @param string $entNom
+     * @return Client
+     */
+    public function setEntNom($entNom)
+    {
+        $this->entNom = $entNom;
+    
+         
+    }
+
+    /**
+     * Get entNom
+     *
+     * @return string 
+     */
+    public function getEntNom()
+    {
+        return $this->entNom;
     }
 
     /**
@@ -183,7 +185,7 @@ class Client
     {
         $this->cin = $cin;
     
-        return $this;
+         
     }
 
     /**
@@ -206,7 +208,7 @@ class Client
     {
         $this->nom = $nom;
     
-        return $this;
+         
     }
 
     /**
@@ -229,7 +231,7 @@ class Client
     {
         $this->prenom = $prenom;
     
-        return $this;
+         
     }
 
     /**
@@ -248,11 +250,11 @@ class Client
      * @param \DateTime $datenaissance
      * @return Client
      */
-    public function setDatenaissance($datenaissance)
+    public function setDatenaissance( $datenaissance)
     {
-        $this->datenaissance = $datenaissance;
+        $this->datenaissance = \DateTime::createFromFormat('Y-m-d',$datenaissance);
     
-        return $this;
+         
     }
 
     /**
@@ -275,7 +277,7 @@ class Client
     {
         $this->numpassport = $numpassport;
     
-        return $this;
+         
     }
 
     /**
@@ -298,7 +300,7 @@ class Client
     {
         $this->telephone = $telephone;
     
-        return $this;
+         
     }
 
     /**
@@ -321,7 +323,7 @@ class Client
     {
         $this->type = $type;
     
-        return $this;
+         
     }
 
     /**
@@ -334,7 +336,6 @@ class Client
         return $this->type;
     }
 
-  
     /**
      * Set remarques
      *
@@ -345,7 +346,7 @@ class Client
     {
         $this->remarques = $remarques;
     
-        return $this;
+         
     }
 
     /**
@@ -368,7 +369,7 @@ class Client
     {
         $this->numpermis = $numpermis;
     
-        return $this;
+         
     }
 
     /**
@@ -389,9 +390,9 @@ class Client
      */
     public function setDatedelpermis($datedelpermis)
     {
-        $this->datedelpermis = $datedelpermis;
+        $this->datedelpermis = \DateTime::createFromFormat('Y-m-d',$datedelpermis);
     
-        return $this;
+         
     }
 
     /**
@@ -414,7 +415,7 @@ class Client
     {
         $this->adresse = $adresse;
     
-        return $this;
+         
     }
 
     /**
@@ -437,7 +438,7 @@ class Client
     {
         $this->emailClient = $emailClient;
     
-        return $this;
+         
     }
 
     /**
@@ -451,6 +452,29 @@ class Client
     }
 
     /**
+     * Set codePays
+     *
+     * @param integer $codePays
+     * @return Client
+     */
+    public function setCodePays($codePays)
+    {
+        $this->codePays = $codePays;
+    
+         
+    }
+
+    /**
+     * Get codePays
+     *
+     * @return integer 
+     */
+    public function getCodePays()
+    {
+        return $this->codePays;
+    }
+
+    /**
      * Set lieuDelPermis
      *
      * @param string $lieuDelPermis
@@ -460,7 +484,7 @@ class Client
     {
         $this->lieuDelPermis = $lieuDelPermis;
     
-        return $this;
+         
     }
 
     /**
@@ -481,9 +505,9 @@ class Client
      */
     public function setDateDelCin($dateDelCin)
     {
-        $this->dateDelCin = $dateDelCin;
+        $this->dateDelCin = \DateTime::createFromFormat('Y-m-d',$dateDelCin);
     
-        return $this;
+         
     }
 
     /**
@@ -497,69 +521,45 @@ class Client
     }
 
     /**
-     * Set codePays
+     * Set datedelpassport
      *
-     * @param \Clients\Entity\Nationalite $codePays
+     * @param \DateTime $datedelpassport
      * @return Client
      */
-    public function setCodePays(\Clients\Entity\Nationalite $codePays = null)
+    public function setDatedelpassport( $datedelpassport)
     {
-        $this->codePays = $codePays;
+        $this->datedelpassport = \DateTime::createFromFormat('Y-m-d',$datedelpassport);
     
-        return $this;
+         
     }
 
     /**
-     * Get codePays
+     * Get datedelpassport
      *
-     * @return \Clients\Entity\Nationalite 
+     * @return \DateTime 
      */
-    public function getCodePays()
+    public function getDatedelpassport()
     {
-        return $this->codePays;
+        return $this->datedelpassport;
     }
-
-    /**
-     * Set entNom
-     *
-     * @param \Clients\Entity\Entrepris $entNom
-     * @return Client
-     */
-    public function setEntNom(\Clients\Entity\Entrepris $entNom = null)
-    {
-        $this->entNom = $entNom;
-    
-        return $this;
-    }
-
-    /**
-     * Get entNom
-     *
-     * @return \Clients\Entity\Entrepris 
-     */
-    public function getEntNom()
-    {
-        return $this->entNom;
-    }
-    
+	
     public function create($data) {
-    	$this->nom       = (isset($data['nom'])) ? $data['nom'] : null;
-    	$this->prenom      = (isset($data['prenom'])) ? $data['prenom'] : null;
-    	$this->emailClient      = (isset($data['email'])) ? $data['email'] : null;
-    	$this->type      = (isset($data['type'])) ? $data['type'] : null;
-    	$this->datenaissance      = (isset($data['date_naissance'])) ? $data['date_naissance'] : null;
-    	$this->numpassport      = (isset($data['passport'])) ? $data['passport'] : null;
-    	$this->cin      = (isset($data['cin'])) ? $data['cin'] : null;
-    	$this->numpermis      = (isset($data['num_permis'])) ? $data['num_permis'] : null;
-    	$this->datedelpermis      = (isset($data['date_permis'])) ? $data['date_permis'] : null;
-    	$this->adresse      = (isset($data['Adresse'])) ? $data['Adresse'] : null;
-    	$this->lieuDelPermis      = (isset($data['Lieu_permis'])) ? $data['Lieu_permis'] : null;
-    	$this->dateDelCin      = (isset($data['Date_cin'])) ? $data['Date_cin'] : null;
-    	$this->datedelpassport     = (isset($data['Date_passport'])) ? $data['Date_passport'] : null;
-    	$this->remarques     = (isset($data['remarque'])) ? $data['remarque'] : null;
-    	$this->entNom     = (isset($data['Entreprise'])) ? $data['Entreprise'] : null;
-    	$this->telephone   = (isset($data['tel'])) ? $data['tel'] : null;
-    	
-    
+    	$this->setNom($data['nom']) ;   
+    	$this->setPrenom($data['prenom']) ;     
+    	$this->setEmailClient($data['email']) ;
+    	$this->setType($data['type']);      
+    	$this->setDatenaissance($data['date_naissance'])  ;   
+    	$this->setNumpassport($data['passport']);
+    	$this->setCin($data['cin']);  
+    	$this->setNumpermis($data['num_permis']);
+    	$this->setDatedelpermis($data['date_permis']); 
+    	$this->setAdresse($data['Adresse']);    
+    	$this->setLieuDelPermis($data['Lieu_permis']);  
+    	$this->setDateDelCin($data['Date_cin']);
+    	$this->setDatedelpassport($data['Date_passport']);
+    	$this->setRemarques($data['remarque'])  ;
+    	$this->setEntNom($data['Entreprise']) ;   
+    	$this->setTelephone($data['tel']) ;
+    	$this->setCodePays($data['Nationalite']);
     }
 }

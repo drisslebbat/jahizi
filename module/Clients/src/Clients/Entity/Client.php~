@@ -24,6 +24,13 @@ class Client
     /**
      * @var string
      *
+     * @ORM\Column(name="Ent_nom", type="string", length=254, nullable=true)
+     */
+    private $entNom;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="cin", type="string", length=254, nullable=true)
      */
     private $cin;
@@ -45,7 +52,7 @@ class Client
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateNaissance", type="datetime", nullable=true)
+     * @ORM\Column(name="dateNaissance", type="date", nullable=true)
      */
     private $datenaissance;
 
@@ -69,13 +76,6 @@ class Client
      * @ORM\Column(name="type", type="string", length=254, nullable=true)
      */
     private $type;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="autres", type="string", length=254, nullable=true)
-     */
-    private $autres;
 
     /**
      * @var string
@@ -113,6 +113,13 @@ class Client
     private $emailClient;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="code_pays", type="integer", nullable=false)
+     */
+    private $codePays;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="lieu_del_permis", type="string", length=30, nullable=false)
@@ -122,29 +129,16 @@ class Client
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_del_CIN", type="date", nullable=false)
+     * @ORM\Column(name="date_del_CIN", type="date", nullable=true)
      */
     private $dateDelCin;
 
     /**
-     * @var \Clients\Entity\Nationalite
+     * @var \DateTime
      *
-     * @ORM\ManyToOne(targetEntity="Clients\Entity\Nationalite")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="code_pays", referencedColumnName="code")
-     * })
+     * @ORM\Column(name="dateDelPassport", type="date", nullable=true)
      */
-    private $codePays;
-
-    /**
-     * @var \Clients\Entity\Entrepris
-     *
-     * @ORM\ManyToOne(targetEntity="Clients\Entity\Entrepris")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Ent_nom", referencedColumnName="nom")
-     * })
-     */
-    private $entNom;
+    private $datedelpassport;
 
 
 }

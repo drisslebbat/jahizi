@@ -86,6 +86,7 @@ class ClientForm extends Form
 						'label' => 'Nationalite',
 				),
 		));
+		
 
 		$this->add(array(
 				'name' => 'date_naissance',
