@@ -21,8 +21,9 @@ class UnclientController extends AbstractActionController
 {
     public function indexAction()
     {
-      $view = new ViewModel();
-      return $view;
+    	$em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+    	 $clients = $em->getRepository('Clients\Entity\Client')->findBy(array(), array('nom' => 'ASC'));
+    	 return new ViewModel(array('clients' => $clients));
     }
     
     public function afficherAction()
@@ -49,7 +50,7 @@ class UnclientController extends AbstractActionController
 				$client=new Client();
  				$client->create($form->getData());
     			$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-   			$objectManager->persist($client);
+   				$objectManager->persist($client);
 	   			$objectManager->flush();
 	   			$id=$client->getIdclient();
 

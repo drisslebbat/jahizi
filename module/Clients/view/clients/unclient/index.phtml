@@ -1,1 +1,24 @@
 <?php
+$title = 'Liste des clients';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p><a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'ajouter'));?>">Nouveau Client</a></p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Client</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+    </tr>
+    <?php foreach($clients as $client) : ?>
+	    <tr>
+	        <td><?php echo $this->escapeHtml($client->getNom());?></td>
+	        <td>
+	            <a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'modifier', 'id'=>$client->getIdclient())); ?>">Edit</a>
+	        </td>
+	        <td>
+	            <a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'supprimer', 'id'=>$client->getIdclient())); ?>" onclick="return confirm('Are you sure?')">Delete</a>
+	        </td>
+	    </tr>
+    <?php endforeach; ?>
+</table>

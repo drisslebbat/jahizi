@@ -76,6 +76,14 @@ class Fiabilite
     
         return $this;
     }
+    public function create($client, $statut, $date,$remarque){
+    	$this->client=$client;
+    	$this->statut=$statut;
+    	$this->setDate($date);
+    	$this->setRemarque($remarque);
+    	
+    }
+    
 
     /**
      * Get statut
@@ -118,7 +126,7 @@ class Fiabilite
      */
     public function setDate($date)
     {
-        $this->date = $date;
+        $this->date = \DateTime::createFromFormat('Y-m-d',$date);
     
         return $this;
     }
