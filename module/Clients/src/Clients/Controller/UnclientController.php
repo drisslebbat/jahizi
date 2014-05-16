@@ -29,7 +29,7 @@ class UnclientController extends AbstractActionController
     public function afficherAction()
     {
     	$view=new ViewModel();
-    	$view->setTemplate('clients/unclient/afficherClient');
+    	$view->setTemplate('clients/unclient/afficher');
     	return $view;
     }
 	
@@ -78,9 +78,15 @@ class UnclientController extends AbstractActionController
     
     public function supprimerAction()
     {
-    	$view=new ViewModel();
-    	$view->setTemplate('clients/unclient/supprimerClient.phtml');
-    	return $view;
+    	$id = (int) $this->params()->fromRoute('id', 0);
+    	if ($id) {
+    		$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+    		$user = $objectManager->find('Clients\Entity\Client',$id);
+    		$objectManager->remove($user);
+    		$objectManager->flush();
+    		$this->flashMessenger()->addSuccessMessage('Client Supprimé');
+    	}
+    	return $this->redirect()->toRoute(NULL ,array( 'controller' => 'Unclient','action' => 'index'));
     }
     
     
