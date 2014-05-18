@@ -16,6 +16,7 @@ use Clients\Form\ClientForm;
 use Zend\InputFilter\InputFilter;
 use Clients\Entity\Entrepris;
 use Clients\Entity\Client;
+use Clients\Entity\Fiabilite;
 
 class UnclientController extends AbstractActionController
 {
@@ -45,16 +46,20 @@ class UnclientController extends AbstractActionController
     		if ($form->isValid()) {
     			$pos=$form->getData();
     			$pos=$this->request->getPost();
-//     			$entrepris=new Entrepris();
-//     			$entrepris->create($form->getData());
+	   			$entrepris=new Entrepris();
+    			$entrepris->create($form->getData());
 				$client=new Client();
  				$client->create($form->getData());
+ 				$fiabilite=new Fiabilite();
+ 				$fiabilite->create($client,'Fiable','Nouveau client');
     			$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
    				$objectManager->persist($client);
+   				$objectManager->persist($entrepris);
+   				$objectManager->persist($fiabilite);
 	   			$objectManager->flush();
 	   			$id=$client->getIdclient();
 
-    			$viewModel = new ViewModel(array('form' =>$form,'donne'=>$id));
+    			$viewModel = new ViewModel(array('form' =>$form,'donne'=>$fiabilite));
     			return $viewModel;
     		}
     	}
@@ -77,9 +82,21 @@ class UnclientController extends AbstractActionController
     	$form=new ClientForm();
     	$data=Array();
     	$data=$client->getArrayCopy();
-    	$pay
     	
-    	$viewModel = new ViewModel(array('test' => $client->getArrayCopy(),'form'=>$form));
+    	if($data['type']==1){
+    		$entr=new Entrepris();
+    		$entr=$objectManager->find('Clients\Entity\Entrepris', $client->getEntNom());
+    		$data['Raison_social']=$entr->getRaisonsocial();
+    		$data['rc']=$entr->getRc();
+    		$data['inter_fin']=$entr->getInterFin();
+    	}else {
+    		$data['Raison_social']=NULL;
+    		$data['rc']=NULL;
+    		$data['inter_fin']=NULL;
+    	}
+    	$form->remplire($data);
+    	
+    	$viewModel = new ViewModel(array('test' => $data,'form'=>$form));
     	return $viewModel;
     	
     }

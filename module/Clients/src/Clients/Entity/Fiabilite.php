@@ -76,10 +76,11 @@ class Fiabilite
     
         return $this;
     }
-    public function create($client, $statut, $date,$remarque){
-    	$this->client=$client;
-    	$this->statut=$statut;
-    	$this->setDate($date);
+    public function create($client, $statut,$remarque){
+    	$this->setClient($client);
+    	$this->setStatut($statut);
+    	$date = new \DateTime();
+    	$this->date=$date;
     	$this->setRemarque($remarque);
     	
     }
@@ -151,7 +152,7 @@ class Fiabilite
     {
         $this->client = $client;
     
-        return $this;
+        
     }
 
     /**
@@ -163,4 +164,6 @@ class Fiabilite
     {
         return $this->client;
     }
+    
+   
 }

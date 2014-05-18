@@ -274,10 +274,10 @@ class ClientForm extends Form
 		$this->get('num_permis')->setValue($data['numpermis']);
 		$this->get('date_permis')->setValue($data['datedelpermis']);
 		$this->get('Adresse')->setValue($data['adresse']);
-// 		$this->get('Raison_social')->setValue($data['Raison_social']);
-// 		$this->get('inter_fin')->setValue($data['inter_fin']);
+		$this->get('Raison_social')->setValue($data['Raison_social']);
+		$this->get('inter_fin')->setValue($data['inter_fin']);
 		$this->get('tel')->setValue($data['telephone']);
-// 		$this->get('rc')->setValue($data['rc']);
+		$this->get('rc')->setValue($data['rc']);
 		$this->get('Lieu_permis')->setValue($data['lieuDelPermis']);
 		$this->get('Date_cin')->setValue($data['dateDelCin']);
 		$this->get('Date_passport')->setValue($data['datenaissance']);
