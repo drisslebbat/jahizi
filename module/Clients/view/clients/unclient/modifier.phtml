@@ -1,1 +1,10 @@
 <?php
+$data=$this->test;
+$form = $this->form;
+$form->get('nom')->setValue($data['nom']);
+$form->prepare();
+echo $this->form()->openTag($form);
+echo $this->formCollection($form);
+echo $this->form()->closeTag($form);
+
+var_dump($data);

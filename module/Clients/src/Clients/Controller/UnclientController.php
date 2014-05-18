@@ -71,9 +71,14 @@ class UnclientController extends AbstractActionController
     
     public function modifierAction()
     {
-    	$view=new ViewModel();
-    	$view->setTemplate('clients/unclient/modifierClient.phtml');
-    	return $view;
+    	$id = (int) $this->params()->fromRoute('id');
+    	$objectManager=$this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+    	$client=$objectManager->find('Clients\Entity\Client',$id);
+    	$form=new ClientForm();
+    	
+    	$viewModel = new ViewModel(array('test' => $client->getArrayCopy(),'form'=>$form));
+    	return $viewModel;
+    	
     }
     
     public function supprimerAction()
