@@ -75,6 +75,9 @@ class UnclientController extends AbstractActionController
     	$objectManager=$this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
     	$client=$objectManager->find('Clients\Entity\Client',$id);
     	$form=new ClientForm();
+    	$data=Array();
+    	$data=$client->getArrayCopy();
+    	$pay
     	
     	$viewModel = new ViewModel(array('test' => $client->getArrayCopy(),'form'=>$form));
     	return $viewModel;

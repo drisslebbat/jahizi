@@ -1,7 +1,7 @@
 <?php
 $data=$this->test;
 $form = $this->form;
-$form->get('nom')->setValue($data['nom']);
+$form->remplire($data);
 $form->prepare();
 echo $this->form()->openTag($form);
 echo $this->formCollection($form);
