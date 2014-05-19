@@ -29,9 +29,30 @@ class UnclientController extends AbstractActionController
     
     public function afficherAction()
     {
-    	$view=new ViewModel();
-    	$view->setTemplate('clients/unclient/afficher');
-    	return $view;
+    	$id = (int) $this->params()->fromRoute('id');
+    	$form=new ClientForm();
+    	$objectManager=$this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+    	$client=$objectManager->find('Clients\Entity\Client',$id);
+    	$data=Array();
+    	$data=$client->getArrayCopy();
+    	 
+    	if($data['type']==1)
+    	{
+    		$entr=new Entrepris();
+    		$entr=$objectManager->find('Clients\Entity\Entrepris', $client->getEntNom());
+    		$data['Raison_social']=$entr->getRaisonsocial();
+    		$data['rc']=$entr->getRc();
+    		$data['inter_fin']=$entr->getInterFin();
+    	}
+    	else
+    	{
+    		$data['Raison_social']=NULL;
+    		$data['rc']=NULL;
+    		$data['inter_fin']=NULL;
+    	}
+    	$form->remplire($data);
+    	$viewModel = new ViewModel(array('form'=>$form,'id' => $id, 'type'=>$data['type']));
+    	return $viewModel;
     }
 	
     public function ajouterAction()

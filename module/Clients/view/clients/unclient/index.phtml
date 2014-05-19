@@ -9,12 +9,16 @@ $this->headTitle($title);
         <th>Client</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
+        <th>&nbsp;</th>
     </tr>
     <?php foreach($clients as $client) : ?>
 	    <tr>
 	        <td><?php echo $this->escapeHtml($client->getNom());?></td>
 	        <td>
 	            <a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'modifier', 'id'=>$client->getIdclient())); ?>">Edit</a>
+	        </td>
+	        <td>
+	            <a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'afficher', 'id'=>$client->getIdclient())); ?>">Detail</a>
 	        </td>
 	        <td>
 	            <a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'supprimer', 'id'=>$client->getIdclient())); ?>" onclick="return confirm('Are you sure?')">Delete</a>
