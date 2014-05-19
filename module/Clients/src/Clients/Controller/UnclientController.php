@@ -44,13 +44,14 @@ class UnclientController extends AbstractActionController
     		$form->setInputFilter($inputFilter);
     		$form->setData($post);
     		if ($form->isValid()) {
-    			$pos=$form->getData();
     			$pos=$this->request->getPost();
+    			
 	   			$entrepris=new Entrepris();
+	   			$client=new Client();
+	   			$fiabilite=new Fiabilite();
+	   		
     			$entrepris->create($form->getData());
-				$client=new Client();
  				$client->create($form->getData());
- 				$fiabilite=new Fiabilite();
  				$fiabilite->create($client,'Fiable','Nouveau client');
     			$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
    				$objectManager->persist($client);
@@ -77,28 +78,52 @@ class UnclientController extends AbstractActionController
     public function modifierAction()
     {
     	$id = (int) $this->params()->fromRoute('id');
+    	$form=new ClientForm();
     	$objectManager=$this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
     	$client=$objectManager->find('Clients\Entity\Client',$id);
-    	$form=new ClientForm();
+    	if($this->request->isPost()) 
+    	{
+    		$post = $this->request->getPost();
+    		$inputFilter = new InputFilter();
+    		$form->setInputFilter($inputFilter);
+    		$form->setData($post);
+    		if ($form->isValid()) 
+    			{
+    				$post=$form->getData();
+    				$client->create($post);
+    				$entreprise=$objectManager->find('Clients\Entity\Entrepris',$post['Entreprise']);
+    				$entreprise->create($post);
+    				$objectManager->flush();
+    			}
+	    		$viewModel = new ViewModel(array('test' => $post,'form'=>$form,'id' => $id));
+	    		return $viewModel;
+    		
+    	}
+    	else 
+    	{
+    	
     	$data=Array();
     	$data=$client->getArrayCopy();
     	
-    	if($data['type']==1){
-    		$entr=new Entrepris();
-    		$entr=$objectManager->find('Clients\Entity\Entrepris', $client->getEntNom());
-    		$data['Raison_social']=$entr->getRaisonsocial();
-    		$data['rc']=$entr->getRc();
-    		$data['inter_fin']=$entr->getInterFin();
-    	}else {
-    		$data['Raison_social']=NULL;
-    		$data['rc']=NULL;
-    		$data['inter_fin']=NULL;
-    	}
+		    	if($data['type']==1)
+		    	{
+		    		$entr=new Entrepris();
+		    		$entr=$objectManager->find('Clients\Entity\Entrepris', $client->getEntNom());
+		    		$data['Raison_social']=$entr->getRaisonsocial();
+		    		$data['rc']=$entr->getRc();
+		    		$data['inter_fin']=$entr->getInterFin();
+		    	}
+		    	else 
+		    	{
+		    		$data['Raison_social']=NULL;
+		    		$data['rc']=NULL;
+		    		$data['inter_fin']=NULL;
+    			}
     	$form->remplire($data);
     	
-    	$viewModel = new ViewModel(array('test' => $data,'form'=>$form));
+    	$viewModel = new ViewModel(array('test' => $data,'form'=>$form, 'id' => $id));
     	return $viewModel;
-    	
+    	}
     }
     
     public function supprimerAction()

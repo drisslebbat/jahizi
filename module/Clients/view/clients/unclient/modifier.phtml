@@ -2,6 +2,7 @@
 $data=$this->test;
 $form = $this->form;
 $form->prepare();
+$form->setAttribute('action', $this->url(NULL,array('controller'=>'Unclient', 'action' => 'modifier','id'=>$this->id)));
 echo $this->form()->openTag($form);
 echo $this->formCollection($form);
 echo $this->form()->closeTag($form);
