@@ -89,11 +89,12 @@ class UnclientController extends AbstractActionController
     	return $viewModel;
     }
     
-    public function fiableAction()
+    public function fiabiliteAction()
     {
-    	$view=new ViewModel();
-    	$view->setTemplate('clients/unclient/fiabliliteClient.phtml');
-    	return $view;
+    	$id = (int) $this->params()->fromRoute('id');
+    	
+   
+    	
     }
     
     public function modifierAction()

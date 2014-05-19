@@ -10,6 +10,7 @@ $this->headTitle($title);
         <th>&nbsp;</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
+        <th>&nbsp;</th>
     </tr>
     <?php foreach($clients as $client) : ?>
 	    <tr>
@@ -22,6 +23,9 @@ $this->headTitle($title);
 	        </td>
 	        <td>
 	            <a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'supprimer', 'id'=>$client->getIdclient())); ?>" onclick="return confirm('Are you sure?')">Delete</a>
+	        </td>
+	        <td>
+	            <a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'fiabilite', 'id'=>$client->getIdclient())); ?>">Changer fiabilité</a>
 	        </td>
 	    </tr>
     <?php endforeach; ?>
