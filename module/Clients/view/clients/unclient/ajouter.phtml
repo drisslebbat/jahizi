@@ -5,7 +5,141 @@ $form->prepare();
 $form->setAttribute('action', $this->url(NULL,array('controller'=>'Unclient', 'action' => 'ajouter')));
 $form->setAttribute('method', 'post');
 echo $this->form()->openTag($form);
-echo $this->formCollection($form);
+?>
+<dl class="zend_form">
+	<dt><?php echo $this->formLabel($form->get('nom')); ?></dt>
+	<dd>
+	<?php
+		echo $this->formElement($form->get('nom'));
+		echo $this->formElementErrors($form->get('nom'));
+		?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('prenom')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('prenom'));
+	echo $this->formElementErrors($form->get('prenom'));
+	?>
+	</dd>
+	
+	
+	<dt><?php echo $this->formLabel($form->get('email'));?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('email'));
+	echo $this->formElementErrors($form->get('email'));
+	?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('type')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('type'));
+	echo $this->formElementErrors($form->get('type'));?>
+	</dd>
+	
+	
+	<dt><?php echo $this->formLabel($form->get('Entreprise')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('Entreprise'));
+	echo $this->formElementErrors($form->get('Entreprise'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('Nationalite')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('Nationalite'));
+	echo $this->formElementErrors($form->get('Nationalite'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('Nationalite')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('Nationalite'));
+	echo $this->formElementErrors($form->get('Nationalite'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('passport')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('passport'));
+	echo $this->formElementErrors($form->get('passport'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('cin')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('cin'));
+	echo $this->formElementErrors($form->get('cin'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('num_permis')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('num_permis'));
+	echo $this->formElementErrors($form->get('num_permis'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('date_permis')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('date_permis'));
+	echo $this->formElementErrors($form->get('date_permis'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('Adresse')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('Adresse'));
+	echo $this->formElementErrors($form->get('Adresse'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('Raison_social')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('Raison_social'));
+	echo $this->formElementErrors($form->get('Raison_social'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('inter_fin')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('inter_fin'));
+	echo $this->formElementErrors($form->get('inter_fin'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('tel')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('tel'));
+	echo $this->formElementErrors($form->get('tel'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('rc')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('rc'));
+	echo $this->formElementErrors($form->get('rc'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('Lieu_permis')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('Lieu_permis'));
+	echo $this->formElementErrors($form->get('Lieu_permis'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('Date_cin')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('Date_cin'));
+	echo $this->formElementErrors($form->get('Date_cin'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('Date_passport')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('Date_passport'));
+	echo $this->formElementErrors($form->get('Date_passport'));?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('remarque')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('remarque'));
+	echo $this->formElementErrors($form->get('remarque'));?>
+	</dd>
+	
+	
+	<dd><?php
+echo $this->formElement($form->get('submit'));
+echo $this->formElementErrors($form->get('submit'));
+?></dd>
+</dl>
+<?php 
 echo $this->form()->closeTag($form);
 var_dump($this->donne);
 

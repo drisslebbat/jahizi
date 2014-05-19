@@ -248,6 +248,7 @@ class ClientForm extends Form
                 'required' => 'required',
             ),
             'options' => array(
+            		'label' => 'Remarque',
             ),
         ));
 
