@@ -17,7 +17,7 @@ use Zend\InputFilter\InputFilter;
 use Clients\Entity\Entrepris;
 use Clients\Entity\Client;
 use Clients\Entity\Fiabilite;
-
+use Clients\Form\FiabiliteForm;
 class UnclientController extends AbstractActionController
 {
     public function indexAction()
@@ -92,8 +92,30 @@ class UnclientController extends AbstractActionController
     public function fiabiliteAction()
     {
     	$id = (int) $this->params()->fromRoute('id');
+    	$objectManager=$this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+    	$client=$objectManager->find('Clients\Entity\Client',$id);
+    	$form=new FiabiliteForm();
+    	if($this->request->isPost())
+    	{
+    		$post = $this->request->getPost();
+    		$inputFilter = new InputFilter();
+    		$form->setInputFilter($inputFilter);
+    		$form->setData($post);
+    		if ($form->isValid())
+    		{
+    			$post=$form->getData();
+    			$fiabilite=new Fiabilite();
+    			$fiabilite->create($client,$post['statut'],$post['remarque']);
+    			$objectManager->persist($fiabilite);
+    			$objectManager->flush();
+    		}
+    		$viewModel = new ViewModel(array('form'=>$form,'id' => $id));
+    		return $viewModel;
     	
-   
+    	}
+    	
+    	$viewModel = new ViewModel(array('form' =>$form,'id'=>$id));
+    	return $viewModel;
     	
     }
     

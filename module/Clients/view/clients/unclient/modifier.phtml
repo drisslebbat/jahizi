@@ -4,6 +4,7 @@ $form = $this->form;
 $form->prepare();
 $form->setAttribute('action', $this->url(NULL,array('controller'=>'Unclient', 'action' => 'modifier','id'=>$this->id)));
 echo $this->form()->openTag($form);
+?>
 <dl class="zend_form">
 	<dt><?php echo $this->formLabel($form->get('nom')); ?></dt>
 	<dd>
