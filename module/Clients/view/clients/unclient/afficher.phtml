@@ -4,7 +4,15 @@ $form->get('submit')->setValue('Ajouter');
 $form->prepare();
 echo $this->form()->openTag($form);
 ?>
+
+
 <h3>CLIENT N°:<?php echo $this->id; ?></h3>
+<il>
+  <li> <a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'index')); ?>">retour a la liste des clients</a> </li>
+  <li> <a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'modifier','id'=>$this->id)); ?>">modifier ce client</a> </li>
+  <li><a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'fiabilite')); ?>">Changer le status de ce client</a></li>
+  </il>
+
 <dl class="zend_form">
 	<dt><?php echo $this->formLabel($form->get('nom')); ?></dt>
 	<dd>
@@ -18,6 +26,13 @@ echo $this->form()->openTag($form);
 	<dd><?php
 	echo $this->formElement($form->get('prenom'));
 	echo $this->formElementErrors($form->get('prenom'));
+	?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('Status')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('Status'));
+	echo $this->formElementErrors($form->get('Status'));
 	?>
 	</dd>
 	

@@ -18,13 +18,18 @@ use Clients\Entity\Entrepris;
 use Clients\Entity\Client;
 use Clients\Entity\Fiabilite;
 use Clients\Form\FiabiliteForm;
+use Doctrine\Tests\Common\Annotations\Null;
 class UnclientController extends AbstractActionController
 {
     public function indexAction()
     {
     	$em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-    	 $clients = $em->getRepository('Clients\Entity\Client')->findBy(array(), array('nom' => 'ASC'));
-    	 return new ViewModel(array('clients' => $clients));
+//     	 $clients = $em->getRepository('Clients\Entity\Client')->findBy(array(), array('nom' => 'ASC'));
+		$querybuilder=$em->getRepository('Clients\Entity\Client')->createQueryBuilder('c');
+		$query=$querybuilder->getQuery();
+		$clients=$query->getResult();
+		
+    	return new ViewModel(array('clients' => $clients));
     }
     
     public function afficherAction()
@@ -104,14 +109,19 @@ class UnclientController extends AbstractActionController
     		if ($form->isValid())
     		{
     			$post=$form->getData();
+    			$post['statut']=($post['statut']) ? 'Non Fiable' : 'Fiable';
     			$fiabilite=new Fiabilite();
     			$fiabilite->create($client,$post['statut'],$post['remarque']);
     			$objectManager->persist($fiabilite);
+    			$client->setStatus($post['statut']);
+    			$objectManager->persist($client);
     			$objectManager->flush();
+    			
+    		return $this->redirect()->toRoute(NULL ,array( 'controller' => 'Unclient','action' => 'index'));
+    		
     		}
-    		$viewModel = new ViewModel(array('form'=>$form,'id' => $id));
-    		return $viewModel;
-    	
+    		
+    		
     	}
     	
     	$viewModel = new ViewModel(array('form' =>$form,'id'=>$id));

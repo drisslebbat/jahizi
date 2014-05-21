@@ -146,6 +146,18 @@ class ClientForm extends Form
                 'label' => 'Date delivrance permis',
             ),
         ));
+        
+        $this->add(array(
+        		'name' => 'Status',
+        		'type' => 'Zend\Form\Element\Text',
+        		'attributes' => array(
+        				'placeholder' => 'Type something...',
+        
+        		),
+        		'options' => array(
+        				'label' => 'Status',
+        		),
+        ));
 
         $this->add(array(
             'name' => 'Adresse',
@@ -274,6 +286,7 @@ class ClientForm extends Form
 		$this->get('cin')->setValue($data['cin']);
 		$this->get('num_permis')->setValue($data['numpermis']);
 		$this->get('date_permis')->setValue($data['datedelpermis']);
+		$this->get('Status')->setValue($data['status']);
 		$this->get('Adresse')->setValue($data['adresse']);
 		$this->get('Raison_social')->setValue($data['Raison_social']);
 		$this->get('inter_fin')->setValue($data['inter_fin']);

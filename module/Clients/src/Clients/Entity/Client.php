@@ -104,7 +104,16 @@ class Client
      * @ORM\Column(name="adresse", type="string", length=254, nullable=false)
      */
     private $adresse;
+    
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=254, nullable=false)
+     */
+    private $status;
 
+    
     /**
      * @var string
      *
@@ -143,6 +152,20 @@ class Client
 
 
     /**
+	 * @return the $status
+	 */
+	public function getStatus() {
+		return $this->status;
+	}
+
+	/**
+	 * @param string $status
+	 */
+	public function setStatus($status) {
+		$this->status = $status;
+	}
+
+	/**
      * Get idclient
      *
      * @return integer 
