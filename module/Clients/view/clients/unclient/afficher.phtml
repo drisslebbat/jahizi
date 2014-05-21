@@ -10,7 +10,7 @@ echo $this->form()->openTag($form);
 <il>
   <li> <a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'index')); ?>">retour a la liste des clients</a> </li>
   <li> <a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'modifier','id'=>$this->id)); ?>">modifier ce client</a> </li>
-  <li><a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'fiabilite')); ?>">Changer le status de ce client</a></li>
+  <li><a href="<?php echo $this->url(NULL,array('controller'=>'Unclient', 'action' => 'fiabilite','id'=>$this->id)); ?>">Changer le status de ce client</a></li>
   </il>
 
 <dl class="zend_form">
