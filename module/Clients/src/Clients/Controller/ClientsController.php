@@ -9,8 +9,11 @@
 
 namespace Clients\Controller;
 
+
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+
+
 
 class ClientsController extends AbstractActionController
 {
@@ -30,11 +33,15 @@ class ClientsController extends AbstractActionController
     	return $view;
     }
     
-    public function listerNoirAction()
+    public function listernoirAction()
     {
-    	$view=new ViewModel();
-    	$view->setTemplate('clients/clients/listerNoir.phtml');
-    	return $view;
+    	$em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+//     	 $clients = $em->getRepository('Clients\Entity\Client')->findBy(array(), array('nom' => 'ASC'));
+		$querybuilder=$em->getRepository('Clients\Entity\Client')->createQueryBuilder('c');
+		$query=$querybuilder->getQuery();
+		$clients=$query->getResult();
+		
+    	return new ViewModel(array('clients' => $clients));
     }
     
 }
