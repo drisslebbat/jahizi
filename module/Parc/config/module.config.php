@@ -15,7 +15,7 @@ return array(
 			'auth-doctrine' => array(
 				'type'    => 'Literal',
 				'options' => array(
-					'route'    => '/auth-doctrine',
+					'route'    => '/Parc',
 					'defaults' => array(
 						'__NAMESPACE__' => 'Parc\Controller',
 						'controller'    => 'Index',

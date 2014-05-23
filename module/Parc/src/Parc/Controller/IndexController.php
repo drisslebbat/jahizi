@@ -8,7 +8,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 // use Auth\Model\Auth;          we don't need the model here we will use Doctrine em 
-use Parc\Entity\User; // only for the filters
+use Parc\Entity\Agent; // only for the filters
 use Parc\Form\LoginForm;       // <-- Add this import
 use Parc\Form\LoginFilter;
 
@@ -17,10 +17,9 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
 		$em = $this->getEntityManager();
-		$users = $em->getRepository('Parc\Entity\Agent')->findAll();
+		$agents = $em->getRepository('Parc\Entity\Agent')->findAll();
         return new ViewModel(array(
-			'message' => $message,
-			'users'	=> $users,
+			'agents'	=> $agents,
 //			
 		));
     }
@@ -33,7 +32,7 @@ class IndexController extends AbstractActionController
 
 		$request = $this->getRequest();
         if ($request->isPost()) {
-            //- $authFormFilters = new User(); // we use the Entity for the filters
+            //- $authFormFilters = new agent(); // we use the Entity for the filters
 			// TODO fix the filters
             //- $form->setInputFilter($authFormFilters->getInputFilter());
 
