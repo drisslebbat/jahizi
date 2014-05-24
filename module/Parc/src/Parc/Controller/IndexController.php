@@ -9,8 +9,10 @@ use Zend\View\Model\ViewModel;
 
 // use Auth\Model\Auth;          we don't need the model here we will use Doctrine em 
 use Parc\Entity\Agent; // only for the filters
-use Parc\Form\LoginForm;       // <-- Add this import
-use Parc\Form\LoginFilter;
+use Parc\Form\AgentForm;       // <-- Add this import
+use Parc\Form\AgentFilter;
+use Parc\Entity\Agence;
+
 
 class IndexController extends AbstractActionController
 {
@@ -26,21 +28,42 @@ class IndexController extends AbstractActionController
 	
     public function modifierAction()
     {
+    	$id = $this->params()->fromRoute('id');
+    	if (!$id) return $this->redirect()->toRoute('auth-doctrine/default', array('controller' => 'Index', 'action' => 'index'));
+    	$form = new AgentForm();
+    	$request = $this->getRequest();
+    	if ($request->isPost()) {
+    		$form->setInputFilter(new AgentFilter());
+    		$form->setData($request->getPost());
+    		if ($form->isValid()) {
+    			$data = $form->getData();
+    			
+    			$this->getUsersTable()->update($data, array('usr_id' => $id));
+    			return $this->redirect()->toRoute('auth-doctrine/default', array('controller' => 'admin', 'action' => 'index'));
+    		}
+    	}
+    	else {
+    		$form->remplire()
+    	
+    	return new ViewModel(array('form' => $form, 'id' => $id));
     }
 	
 	public function ajouterAction()
 	{
-		$form = new UserForm();
+		$form = new AgentForm();
 		$request = $this->getRequest();
 		if ($request->isPost()) {
-			$form->setInputFilter(new UserFilter());
+			$form->setInputFilter(new AgentFilter());
 			$form->setData($request->getPost());
 			if ($form->isValid()) {
 				$data = $form->getData();
-				unset($data['submit']);
-				if (empty($data['usr_registration_date'])) $data['usr_registration_date'] = '2013-07-19 12:00:00';
-				$this->getUsersTable()->insert($data);
-				return $this->redirect()->toRoute('auth-doctrine/default', array('controller' => 'admin', 'action' => 'index'));
+				$agent=new Agent();
+				$agent->create($data);
+				$objectManager=$this->getEntityManager();
+				$objectManager->persist($agent);
+				$objectManager->flush();
+				//$this->getUsersTable()->insert($data);
+				return $this->redirect()->toRoute(NULL, array('controller' => 'Index', 'action' => 'index'));
 			}
 		}
 		return new ViewModel(array('form' => $form));
@@ -61,10 +84,10 @@ class IndexController extends AbstractActionController
 		$id = (int) $this->params()->fromRoute('id', 0);
 		if ($id) {
 			$objectManager = $this->getEntityManager();
-			$user = $objectManager->find('Clients\Entity\Client',$id);
-			$objectManager->remove($user);
+			$agent = $objectManager->getRepository('Parc\Entity\Agent')->find($id);
+			$objectManager->remove($agent);
 			$objectManager->flush();
-			$this->flashMessenger()->addSuccessMessage('Client Supprimé');
+			$this->flashMessenger()->addSuccessMessage('Agent Supprimé');
 		}
 		return $this->redirect()->toRoute(NULL ,array( 'controller' => 'Index','action' => 'index'));
 	}

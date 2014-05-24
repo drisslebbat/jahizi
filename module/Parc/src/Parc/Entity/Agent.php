@@ -3,7 +3,6 @@
 namespace Parc\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Agent
  *
@@ -181,5 +180,18 @@ class Agent
     public function getDateAjout()
     {
         return $this->dateAjout;
+    }
+    
+    public function create($data) {
+    	$this->setNom($data['usr_name']) ;
+    	$this->setPrenom($data['usr_prenom']) ;
+    	$this->setEmail($data['usr_email']) ;
+    	$this->setDateAjout(new \DateTime())  ;
+    	$this->setPassword($data['usr_password']);
+    	
+    }
+    public function getArrayCopy()
+    {
+    	return get_object_vars($this);
     }
 }
