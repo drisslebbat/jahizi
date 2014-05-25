@@ -36,4 +36,10 @@ class AgentForm extends Form
             'attributes' => array('type'  => 'submit', 'value' => 'Go','id' => 'submitbutton'),
         )); 
     }
+    public function remplire($data) {
+    	$this->get('usr_name')->setValue($data['nom']);
+    	$this->get('usr_prenom')->setValue($data['prenom']);
+    	$this->get('usr_email')->setValue($data['email']);
+    	$this->get('usr_password')->setValue($data['password']);
+    }
 }

@@ -7,7 +7,7 @@ return array(
         'invokables' => array(
             'Parc\Controller\Index' => 'Parc\Controller\IndexController',
             'Parc\Controller\Registration' => 'Parc\Controller\RegistrationController',
-            'Parc\Controller\Admin' => 'Parc\Controller\AdminController',			
+            			
         ),
     ),	
     'router' => array(
@@ -15,7 +15,7 @@ return array(
 			'auth-doctrine' => array(
 				'type'    => 'Literal',
 				'options' => array(
-					'route'    => '/Parc',
+					'route'    => '/parc',
 					'defaults' => array(
 						'__NAMESPACE__' => 'Parc\Controller',
 						'controller'    => 'Index',

@@ -30,6 +30,8 @@ class IndexController extends AbstractActionController
     {
     	$id = $this->params()->fromRoute('id');
     	if (!$id) return $this->redirect()->toRoute('auth-doctrine/default', array('controller' => 'Index', 'action' => 'index'));
+    	$objectManager=$this->getEntityManager();
+    	$agent=$objectManager->find('Parc\Entity\Agent',$id);
     	$form = new AgentForm();
     	$request = $this->getRequest();
     	if ($request->isPost()) {
@@ -37,15 +39,18 @@ class IndexController extends AbstractActionController
     		$form->setData($request->getPost());
     		if ($form->isValid()) {
     			$data = $form->getData();
-    			
-    			$this->getUsersTable()->update($data, array('usr_id' => $id));
-    			return $this->redirect()->toRoute('auth-doctrine/default', array('controller' => 'admin', 'action' => 'index'));
+    			$agent->create($data);
+    			$objectManager->persist($agent);
+    			$objectManager->flush();
+    			//$this->getUsersTable()->update($data, array('usr_id' => $id));
+    			return $this->redirect()->toRoute('auth-doctrine/default', array('controller' => 'Index', 'action' => 'index'));
     		}
     	}
     	else {
-    		$form->remplire()
+    		$form->remplire($agent->getArrayCopy());
     	
     	return new ViewModel(array('form' => $form, 'id' => $id));
+    }
     }
 	
 	public function ajouterAction()
