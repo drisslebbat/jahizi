@@ -22,7 +22,6 @@ class IndexController extends AbstractActionController
 		$agents = $em->getRepository('Parc\Entity\Agent')->findAll();
         return new ViewModel(array(
 			'agents'	=> $agents,
-//			
 		));
     }
 	
@@ -42,7 +41,6 @@ class IndexController extends AbstractActionController
     			$agent->create($data);
     			$objectManager->persist($agent);
     			$objectManager->flush();
-    			//$this->getUsersTable()->update($data, array('usr_id' => $id));
     			return $this->redirect()->toRoute('auth-doctrine/default', array('controller' => 'Index', 'action' => 'index'));
     		}
     	}
@@ -77,11 +75,40 @@ class IndexController extends AbstractActionController
 
 	public function activeAction()
 	{
-		
+
+		$id = (int) $this->params()->fromRoute('id', 0);
+		if ($id) {
+			$objectManager=$this->getEntityManager();
+			$agent=new Agent();
+			$agent=$objectManager->getRepository('Parc\Entity\Agent')->find($id);
+			if($agent->active())
+			{
+				$agent->setActive(false);
+				return $this->redirect()->toRoute(NULL ,array( 'controller' => 'Index','action' => 'index'));
+				
+			}
+			else
+			{
+				$agent->setActive(true);
+				return $this->redirect()->toRoute(NULL ,array( 'controller' => 'Index','action' => 'index'));
+			}
+			return new ViewModel(array(
+					'agent'	=> $agent,
+			));
+				
+		}
 	}
 	public function afficherAction()
 	{
-		
+		$id = (int) $this->params()->fromRoute('id', 0);
+		if ($id) {
+			$objectManager=$this->getEntityManager();
+			$agent=$objectManager->getRepository('Parc\Entity\Agent')->find($id);
+			return new ViewModel(array(
+					'agent'	=> $agent,
+			));
+			
+		}
 	}
 	public function supprimerAction() 
 	{

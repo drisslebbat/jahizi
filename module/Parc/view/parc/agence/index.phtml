@@ -1,0 +1,37 @@
+<h1>I am in ParcModule AgenceController Agenceaction </h1>
+
+
+<?php var_dump($this->agences); ?>
+
+
+<hr />
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>ID</th
+		<th>Nom</th>
+		<th>Email</th>
+		<th>site</th>
+		<th>Couleur</th>
+		<th>&nbsp;</th>
+		<th>&nbsp;</th>
+		<th>&nbsp;</th>
+	</tr>
+<?php foreach ($agences as $agence) { ?>
+	<tr>
+		<td><?php echo $this->escapeHtml($agence->getIdagence());?></td>
+		<td><?php echo $this->escapeHtml($agence->getNom());?></td>
+		<td><?php echo $this->escapeHtml($agence->getEmail());?></td>
+		<td><?php echo $this->escapeHtml($agence->getSite());?></td>
+		<td><?php echo $this->escapeHtml($agence->getCouleur());?></td>
+		<td><a href="<?php echo $this->url(NULL,array('controller'=>'Agence', 'action' => 'modifier', 'id'=>$agence->getIdagence())); ?>">Edit</a>
+	        </td>
+	        <td>
+	            <a href="<?php echo $this->url(NULL,array('controller'=>'Agence', 'action' => 'afficher', 'id'=>$agence->getIdagence())); ?>">Detail</a>
+	        </td>
+	        <td>
+	            <a href="<?php echo $this->url(NULL,array('controller'=>'Agence', 'action' => 'supprimer', 'id'=>$agence->getIdagence())); ?>" onclick="return confirm('Are you sure?')">Delete</a>
+	        </td>
+	       
+	</tr>
+<?php } ?>
+</table>
