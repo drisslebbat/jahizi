@@ -79,7 +79,7 @@ class AgenceController extends AbstractActionController {
 		$id = (int) $this->params()->fromRoute('id', 0);
 		if ($id) {
 			$objectManager=$this->getEntityManager();
-			$agence=$objectManager->getRepository('Parc\Entity\agence')->find($id);
+			$agence=$objectManager->getRepository('Parc\Entity\Agence')->find($id);
 			return new ViewModel(array(
 					'agence'	=> $agence,
 			));
