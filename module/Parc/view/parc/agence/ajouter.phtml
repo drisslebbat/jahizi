@@ -4,8 +4,8 @@ echo '<h1>Create</h1>';
 $form->prepare();
 // Assuming the "contact/process" route exists...
 
-$form->setAttribute('action', $this->url(NULL,array('controller'=>'Index', 'action' => 'ajouter'))); //'contact/process'));
-// Set the method attribute for the form
+$form->setAttribute('action', $this->url(NULL,array('controller'=>'Agence', 'action' => 'ajouter'))); 
+
 $form->setAttribute('method', 'post');
 
 echo $this->form()->openTag($form);

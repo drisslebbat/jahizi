@@ -4,7 +4,9 @@ namespace Parc\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Parc\Entity;
+use Parc\Entity\Agence;
+use Parc\Form\AgenceForm;
+use Parc\Form\AgenceFilter;
 
 /**
  * AgenceController
@@ -27,7 +29,7 @@ class AgenceController extends AbstractActionController {
 	public function modifierAction()
 	{
 		$id = $this->params()->fromRoute('id');
-		if (!$id) return $this->redirect()->toRoute('auth-doctrine/default', array('controller' => 'Index', 'action' => 'Agence'));
+		if (!$id) return $this->redirect()->toRoute('auth-doctrine/default', array('controller' => 'Agence', 'action' => 'Index'));
 		$objectManager=$this->getEntityManager();
 		$agence=$objectManager->find('Parc\Entity\Agence',$id);
 		$form = new AgenceForm();
@@ -72,31 +74,6 @@ class AgenceController extends AbstractActionController {
 	}
 	
 	
-	public function activeAction()
-	{
-	
-		$id = (int) $this->params()->fromRoute('id', 0);
-		if ($id) {
-			$objectManager=$this->getEntityManager();
-			$agence=new agence();
-			$agence=$objectManager->getRepository('Parc\Entity\Agence')->find($id);
-			if($agence->active())
-			{
-				$agence->setActive(false);
-				return $this->redirect()->toRoute(NULL ,array( 'controller' => 'Agence','action' => 'index'));
-	
-			}
-			else
-			{
-				$agence->setActive(true);
-				return $this->redirect()->toRoute(NULL ,array( 'controller' => 'Agence','action' => 'index'));
-			}
-			return new ViewModel(array(
-					'agence'	=> $agence,
-			));
-	
-		}
-	}
 	public function afficherAction()
 	{
 		$id = (int) $this->params()->fromRoute('id', 0);

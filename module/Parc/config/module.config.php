@@ -6,7 +6,7 @@ return array(
 	'controllers' => array(
         'invokables' => array(
             'Parc\Controller\Index' => 'Parc\Controller\IndexController',
-            'Parc\Controller\Registration' => 'Parc\Controller\RegistrationController',
+            'Parc\Controller\Agence' => 'Parc\Controller\AgenceController',
             			
         ),
     ),	

@@ -182,4 +182,15 @@ class Agence
     {
         return $this->couleur;
     }
+    
+    public function create($data) {
+    	$this->setNom($data['agence_name']) ;
+    	$this->setCouleur($data['agence_couleur']) ;
+    	$this->setEmail($data['agence_email']) ;
+    	$this->setSite($data['agence_site']);
+    }
+    public function getArrayCopy()
+    {
+    	return get_object_vars($this);
+    }
 }
