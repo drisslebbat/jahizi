@@ -275,4 +275,19 @@ class Depenses
     {
         return $this->idagence;
     }
+    public function create($data) {
+    	$this->setNature($data['nature']) ;
+    	$this->setMantant($data['montant']) ;
+    	$this->setBanque($data['banquel']) ;
+    	$this->setModereg($data['mode_paiement']);
+    	$this->setDatepaiement($data['date'])  ;
+    	$this->setNumcheque($data['num_cheque']);
+    	$this->setRemarque($data['remarques']);
+    	
+ 
+    }
+    public function getArrayCopy()
+    {
+    	return get_object_vars($this);
+    }
 }
