@@ -7,6 +7,7 @@ return array(
         'invokables' => array(
             'Parc\Controller\Index' => 'Parc\Controller\IndexController',
             'Parc\Controller\Agence' => 'Parc\Controller\AgenceController',
+        		'Parc\Controller\Depense' => 'Parc\Controller\DepenseController',
             			
         ),
     ),	
