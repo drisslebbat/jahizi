@@ -29,6 +29,7 @@ class DepenseForm extends Form
                 'required' => 'required', 
             ), 
             'options' => array( 
+            		'label' => 'Montant'
             ), 
         )); 
  
@@ -66,7 +67,7 @@ class DepenseForm extends Form
             'type' => 'Zend\Form\Element\Text', 
             'attributes' => array( 
                 'placeholder' => 'Type something...', 
-                'required' => 'required', 
+                 
             ), 
             'options' => array( 
                 'label' => 'N° cheque', 

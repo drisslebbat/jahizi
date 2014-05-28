@@ -1,13 +1,77 @@
 <?php
-echo '<h1>Create</h1>';
-// $form = $this->form;
+$form = $this->form;
+$form->get('submit')->setValue('Ajouter');
 $form->prepare();
-// Assuming the "contact/process" route exists...
-
-$form->setAttribute('action', $this->url(NULL,array('controller'=>'Agence', 'action' => 'ajouter'))); 
-
+$form->setAttribute('action', $this->url(NULL,array('controller'=>'Depense', 'action' => 'ajouter')));
 $form->setAttribute('method', 'post');
-
 echo $this->form()->openTag($form);
-echo $this->formCollection($form);
+?>
+
+<dl class="zend_form">
+<dt><?php echo $this->formLabel($form->get('nature')); ?></dt>
+	<dd>
+	<?php
+		echo $this->formElement($form->get('nature'));
+		echo $this->formElementErrors($form->get('nature'));
+		?>
+	</dd>
+	
+	<dt><?php echo $this->formLabel($form->get('montant')); ?></dt>
+	<dd>
+	<?php
+		echo $this->formElement($form->get('montant'));
+		echo $this->formElementErrors($form->get('montant'));
+		?>
+	
+	
+	<dt><?php echo $this->formLabel($form->get('mode_paiement')); ?></dt>
+	<dd>
+	<?php
+		echo $this->formElement($form->get('mode_paiement'));
+		echo $this->formElementErrors($form->get('mode_paiement'));
+		?>
+	</dd>
+	
+	
+	<dt><?php echo $this->formLabel($form->get('banque')); ?></dt>
+	<dd>
+	<?php
+		echo $this->formElement($form->get('banque'));
+		echo $this->formElementErrors($form->get('banque'));
+		?></dd>
+		
+	<dt><?php echo $this->formLabel($form->get('banque')); ?></dt>
+	<dd>
+	<?php
+		echo $this->formElement($form->get('banque'));
+		echo $this->formElementErrors($form->get('banque'));
+		?></dd>
+		
+		<dt><?php echo $this->formLabel($form->get('num_cheque')); ?></dt>
+	<dd>
+	<?php
+		echo $this->formElement($form->get('num_cheque'));
+		echo $this->formElementErrors($form->get('num_cheque'));
+		?></dd>
+		
+		<dt><?php echo $this->formLabel($form->get('remarque')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('remarque'));
+	echo $this->formElementErrors($form->get('remarque'));?>
+	</dd>
+	<dt><?php echo $this->formLabel($form->get('date')); ?></dt>
+	<dd><?php
+	echo $this->formElement($form->get('date'));
+	echo $this->formElementErrors($form->get('date'));?>
+	</dd>
+	
+	
+	<dd><?php
+echo $this->formElement($form->get('submit'));
+echo $this->formElementErrors($form->get('submit'));
+?></dd>
+</dl>
+<?php 
+
 echo $this->form()->closeTag();
+?>

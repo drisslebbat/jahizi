@@ -146,7 +146,7 @@ class Depenses
      */
     public function setDatepaiement($datepaiement)
     {
-        $this->datepaiement = $datepaiement;
+        $this->datepaiement = \DateTime::createFromFormat('Y-m-d',$datepaiement);
     
         return $this;
     }
@@ -278,11 +278,11 @@ class Depenses
     public function create($data) {
     	$this->setNature($data['nature']) ;
     	$this->setMantant($data['montant']) ;
-    	$this->setBanque($data['banquel']) ;
+    	$this->setBanque($data['banque']) ;
     	$this->setModereg($data['mode_paiement']);
     	$this->setDatepaiement($data['date'])  ;
     	$this->setNumcheque($data['num_cheque']);
-    	$this->setRemarque($data['remarques']);
+    	$this->setRemarque($data['remarque']);
     	
  
     }
