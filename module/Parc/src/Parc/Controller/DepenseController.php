@@ -81,7 +81,7 @@ public function indexAction()
 			$objectManager=$this->getEntityManager();
 			$depense=$objectManager->getRepository('Parc\Entity\Depenses')->find($id);
 			return new ViewModel(array(
-					'Depense'	=> $Depense,
+					'Depense'	=> $depense,
 			));
 				
 		}

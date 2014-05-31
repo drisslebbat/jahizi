@@ -104,7 +104,7 @@ class DepenseForm extends Form
 
          public function remplire($data) {
          	$this->get('nature')->setValue($data['nature']);
-         	$this->get('montant')->setValue($data['montant']);
+         	$this->get('montant')->setValue($data['mantant']);
          	$this->get('mode_paiement')->setValue($data['modereg']);
          	$this->get('banque')->setValue($data['banque']);
          	$this->get('num_cheque')->setValue($data['numcheque']);

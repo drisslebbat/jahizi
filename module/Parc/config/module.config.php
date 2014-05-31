@@ -43,7 +43,7 @@ return array(
 	),
     'view_manager' => array(
         'template_path_stack' => array(
-            'auth-doctrine' => __DIR__ . '/../view'
+            'Parc' => __DIR__ . '/../view'
         ),
 		
 		'display_exceptions' => true,
