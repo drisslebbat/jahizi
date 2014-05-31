@@ -47,6 +47,13 @@ class Agent
      * @ORM\Column(name="password", type="string", length=254, nullable=false)
      */
     private $password;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usr_password_salt", type="string", length=100, nullable=true)
+     */
+    private $usrPasswordSalt;
 
     /**
      * @var \DateTime
@@ -135,6 +142,30 @@ class Agent
     {
         return $this->prenom;
     }
+    
+    
+    /**
+     * Set usrPasswordSalt
+     *
+     * @param string $usrPasswordSalt
+     * @return Users
+     */
+    public function setUsrPasswordSalt($usrPasswordSalt)
+    {
+    	$this->usrPasswordSalt = $usrPasswordSalt;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get usrPasswordSalt
+     *
+     * @return string
+     */
+    public function getUsrPasswordSalt()
+    {
+    	return $this->usrPasswordSalt;
+    }
 
     /**
      * Set password
@@ -188,6 +219,7 @@ class Agent
     	$this->setEmail($data['usr_email']) ;
     	$this->setDateAjout(new \DateTime())  ;
     	$this->setPassword($data['usr_password']);
+    	$this->setUsrPasswordSalt($data['usrPasswordSalt']);
     	
     }
     public function getArrayCopy()

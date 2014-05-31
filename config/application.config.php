@@ -7,7 +7,7 @@ return array(
     		'DoctrineORMModule',
     		'ZendDeveloperTools',
     		'Clients',
-    		'Parc',
+    		'Parc','Authentication',
     ),
 
     // These are various options for the listeners attached to the ModuleManager
