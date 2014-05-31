@@ -66,8 +66,8 @@ return array(
 						// echo '<h1>callback user->getPassword = ' .$user->getPassword() . ' passwordGiven = ' . $passwordGiven . '</h1>';
 						//- if ($user->getPassword() == md5($passwordGiven)) { // original
 						// ToDo find a way to access the Service Manager and get the static salt from config array
-						if ($user->getUsrPassword() == md5('aFGQ475SDsdfsaf2342' . $passwordGiven . $user->getUsrPasswordSalt()) &&
-						$user->getUsrActive() == 1) {
+						if ($agent->getPassword() == md5('aFGQ475SDsdfsaf2342' . $passwordGiven . $agent->getUsrPasswordSalt()) &&
+						$agent->getUsrActive() == true) {
 							return true;
 						}
 						else {

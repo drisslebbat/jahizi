@@ -249,6 +249,7 @@ class Agent
     	$this->setDateAjout(new \DateTime())  ;
     	$this->setPassword($data['usr_password']);
     	$this->setUsrPasswordSalt($data['usrPasswordSalt']);
+    	$this->setUsrActive($data['usr_active']);
     	
     }
     public function getArrayCopy()

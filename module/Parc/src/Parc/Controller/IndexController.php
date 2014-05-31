@@ -148,6 +148,7 @@ class IndexController extends AbstractActionController
 		);
 		$data['usr_password']=$pass;
 		$data['usrPasswordSalt']=$salt;
+		$data['usr_active']=true;
 		return $data;
 	}
 	

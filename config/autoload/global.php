@@ -12,5 +12,5 @@
  */
 
 return array(
-    // ...
+    'static_salt' => 'aFGQ475SDsdfsaf2342'
 );

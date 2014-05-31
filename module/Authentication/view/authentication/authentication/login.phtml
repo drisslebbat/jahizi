@@ -16,8 +16,8 @@ echo $this->form()->closeTag();
 ?>
 
 <?php // view helper
-    if ($user = $this->identity()) {
-        echo 'Logged in as ' . $this->escapeHtml($user->getUsrName());
+    if ($agent = $this->identity()) {
+        echo 'Logged in as ' . $this->escapeHtml($agent->getNom());
 ?>		
  | <a href="<?php echo $this->url('auth-doctrine/default', array('controller' => 'authentification', 'action' => 'logout'));?>"><?php echo $this->translate('Logout'); ?></a> 
 <?php
