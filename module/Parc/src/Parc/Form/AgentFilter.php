@@ -48,7 +48,7 @@ class AgentFilter extends InputFilter
 
         $this->add(array(
             'name'       => 'usr_email',
-            'required'   => false,
+            'required'   => true,
             'validators' => array(
                 array(
                     'name' => 'EmailAddress'

@@ -62,7 +62,14 @@ class Agent
      */
     private $dateAjout;
 
-
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="usr_active", type="boolean", nullable=false)
+     
+     */
+    private $usrActive;
+    
 
     /**
      * Get idagent
@@ -211,6 +218,28 @@ class Agent
     public function getDateAjout()
     {
         return $this->dateAjout;
+    }
+    /**
+     * Set usrActive
+     *
+     * @param boolean $usrActive
+     * @return Users
+     */
+    public function setUsrActive($usrActive)
+    {
+    	$this->usrActive = $usrActive;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get usrActive
+     *
+     * @return boolean
+     */
+    public function getUsrActive()
+    {
+    	return $this->usrActive;
     }
     
     public function create($data) {
