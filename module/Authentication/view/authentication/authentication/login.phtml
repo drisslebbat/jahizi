@@ -1,0 +1,31 @@
+
+<?php echo $this->messages; ?>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(NULL, array('controller' => 'Authentication', 'action' => 'login')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+// echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('email'));?><br/>
+<?php echo $this->formRow($form->get('password'));?><br/><?php
+echo $this->formRow($form->get('rememberme'));?><br/><?php
+echo $this->formSubmit($form->get('submit'));?><br/><?php
+echo $this->form()->closeTag();
+?>
+
+<?php // view helper
+    if ($user = $this->identity()) {
+        echo 'Logged in as ' . $this->escapeHtml($user->getUsrName());
+?>		
+ | <a href="<?php echo $this->url('auth-doctrine/default', array('controller' => 'authentification', 'action' => 'logout'));?>"><?php echo $this->translate('Logout'); ?></a> 
+<?php
+    } else {
+        echo 'Not logged in';
+    }
+?>
+
+<p>
+	<a href="<?php echo $this->url('auth-doctrine/default', array('controller' => 'registration', 'action' => 'forgotten-password'));?>"><?php echo $this->translate('Forgotten Password'); ?></a>
+</p>

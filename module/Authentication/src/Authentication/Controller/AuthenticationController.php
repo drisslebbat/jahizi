@@ -10,6 +10,10 @@
 namespace Authentication\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use Authentication\Form\LoginForm;
+use Autentification\Form\LoginFilter;
+use Zend\View\Model\ViewModel;
+use Zend\InputFilter\InputFilter;
 
 class AuthenticationController extends AbstractActionController
 {
@@ -21,8 +25,8 @@ class AuthenticationController extends AbstractActionController
 	
 		$request = $this->getRequest();
 		if ($request->isPost()) {
-			
-			$form->setInputFilter(new LoginFilter($this->getServiceLocator()));
+			$filter=new InputFilter();
+			$form->setInputFilter($filter);
 			$form->setData($request->getPost());
 			if ($form->isValid()) {
 				$data = $form->getData();

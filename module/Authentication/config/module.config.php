@@ -87,10 +87,10 @@ return array(
 										'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
 										'cache' => 'array',
 										'paths' => array(
-												 __DIR__ . '/../module/Parc/src/Parc/Entity' // 'path/to/my/entities',
-												,__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity',
+												// __DIR__ . '/../module/Parc/src/Parc/Entity' // 'path/to/my/entities',
+												//,__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity',
 												// 'H:\PortableApps\PortableGit\projects\btk\module\Auth\src\Auth\Entity' // Stoyan added to use doctrine in Auth module
-												//__DIR__ . '/../../Parc/src/Parc/Entity', // Stoyan added to use doctrine in Auth module
+												__DIR__ . '/../../Parc/src/Parc/Entity', // Stoyan added to use doctrine in Auth module
 												// 'another/path'
 										),
 								),

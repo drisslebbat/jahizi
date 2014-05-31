@@ -1,5 +1,5 @@
 <?php
-namespace AuthDoctrine\Form;
+namespace Authentication\Form;
 
 use Zend\Form\Form;
 

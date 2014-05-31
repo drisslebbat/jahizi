@@ -1,5 +1,5 @@
 <?php
-namespace Autentification\Form;
+namespace Authentication\Form;
 
 use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilter;
