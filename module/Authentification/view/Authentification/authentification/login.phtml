@@ -19,7 +19,7 @@ echo $this->form()->closeTag();
     if ($agent = $this->identity()) {
         echo 'Logged in as ' . $this->escapeHtml($agent->getNom());
 ?>		
- | <a href="<?php echo $this->url('auth-doctrine/default', array('controller' => 'Authentification', 'action' => 'logout'));?>"><?php echo $this->translate('Logout'); ?></a> 
+ | <a href="<?php echo $this->url(NULL, array('controller' => 'Authentification', 'action' => 'logout'));?>"><?php echo $this->translate('Logout'); ?></a> 
 <?php
     } else {
         echo 'Not logged in';
@@ -27,5 +27,5 @@ echo $this->form()->closeTag();
 ?>
 
 <p>
-	<a href="<?php echo $this->url('auth-doctrine/default', array('controller' => 'registration', 'action' => 'forgotten-password'));?>"><?php echo $this->translate('Forgotten Password'); ?></a>
+	<a href="<?php echo $this->url(NULL , array('controller' => 'Authentification', 'action' => 'forgotten-password'));?>"><?php echo $this->translate('Forgotten Password'); ?></a>
 </p>
