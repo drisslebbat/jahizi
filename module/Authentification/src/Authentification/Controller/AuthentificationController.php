@@ -7,15 +7,15 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Authentication\Controller;
+namespace Authentification\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Authentication\Form\LoginForm;
-use Autentification\Form\LoginFilter;
+use Authentification\Form\LoginForm;
+use Authentification\Form\LoginFilter;
 use Zend\View\Model\ViewModel;
 use Zend\InputFilter\InputFilter;
 
-class AuthenticationController extends AbstractActionController
+class AuthentificationController extends AbstractActionController
 {
 	public function loginAction()
 	{

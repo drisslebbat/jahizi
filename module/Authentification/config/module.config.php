@@ -2,7 +2,7 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Authentication\Controller\Authentication' => 'Authentication\Controller\AuthenticationController',
+            'Authentification\Controller\Authentification' => 'Authentification\Controller\AuthentificationController',
         ),
     ),
     'router' => array(
@@ -11,12 +11,12 @@ return array(
                 'type'    => 'Literal',
                 'options' => array(
                     // Change this to something specific to your module
-                    'route'    => '/authentication',
+                    'route'    => '/authentification',
                     'defaults' => array(
                         // Change this value to reflect the namespace in which
                         // the controllers for your module are found
-                        '__NAMESPACE__' => 'Authentication\Controller',
-                        'controller'    => 'Authentication',
+                        '__NAMESPACE__' => 'Authentification\Controller',
+                        'controller'    => 'Authentification',
                         'action'        => 'login',
                     ),
                 ),
@@ -44,7 +44,7 @@ return array(
     ),
     'view_manager' => array(
         'template_path_stack' => array(
-            'Authentication' => __DIR__ . '/../view',
+            'Authentification' => __DIR__ . '/../view',
         ),
     		
     ),
