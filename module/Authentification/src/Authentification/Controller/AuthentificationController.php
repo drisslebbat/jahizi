@@ -112,15 +112,15 @@ class AuthentificationController extends AbstractActionController
 				$data = $form->getData();
 				$usrEmail = $data['usrEmail'];
 				$entityManager = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-				$Agent = $entityManager->getRepository('Parc\Entity\Agent')->findOneBy(array('email' => $usrEmail)); //
+				$agent = $entityManager->getRepository('Parc\Entity\Agent')->findOneBy(array('email' => $usrEmail)); //
 				$password = $this->generatePassword();
-				$passwordHash = $this->encriptPassword($this->getStaticSalt(), $password, $Agent->getUsrPasswordSalt());
+				$passwordHash = $this->encriptPassword($this->getStaticSalt(), $password, $agent->getUsrPasswordSalt());
 				$this->sendPasswordByEmail($usrEmail, $password);
 				$this->flashMessenger()->addMessage($usrEmail);
-				$user->setUsrPassword($passwordHash);
-				$entityManager->persist($user);
+				$agent->setPassword($passwordHash);
+				$entityManager->persist($agent);
 				$entityManager->flush();
-				return $this->redirect()->toRoute(NULL, array('controller'=>' Authentification', 'action'=>'password-change-success'));
+				return $this->redirect()->toRoute(NULL, array('controller'=>'Authentification', 'action'=>'password-change-success'));
 			}
 		}
 		return new ViewModel(array('form' => $form));

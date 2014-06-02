@@ -20,7 +20,16 @@ echo $this->form()->closeTag();
         echo 'Logged in as ' . $this->escapeHtml($agent->getNom());
 ?>		
  | <a href="<?php echo $this->url(NULL, array('controller' => 'Authentification', 'action' => 'logout'));?>"><?php echo $this->translate('Logout'); ?></a> 
-<?php
+<br/><br/><br/><br/><br/><br/>
+<<ul>
+  <li> <a href="<?php echo$this->url('clients/default' , array('controller' => 'UnClient', 'action' => 'Index'));?>">Liste des clients</a> </li>
+<li> <a href="<?php echo$this->url('parc/default' , array('controller' => 'Index', 'action' => 'Index'));?>">Liste des agents</a> </li>
+<li> <a href="<?php echo$this->url('parc/default' , array('controller' => 'Agence', 'action' => 'Index'));?>">Liste des Agences</a> </li>
+
+  
+</ul>
+
+ <?php
     } else {
         echo 'Not logged in';
     }

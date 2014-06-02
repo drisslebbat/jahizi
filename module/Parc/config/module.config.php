@@ -13,7 +13,7 @@ return array(
     ),	
     'router' => array(
         'routes' => array(
-			'auth-doctrine' => array(
+			'parc' => array(
 				'type'    => 'Literal',
 				'options' => array(
 					'route'    => '/parc',
