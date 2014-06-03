@@ -9,5 +9,5 @@ return array(
 										'port'     => '3306',
 										'user'     => 'root',
 										'password' => '',
-										'dbname'   => 'jahizi',
+										'dbname'   => 'jahizii',
 								)))));

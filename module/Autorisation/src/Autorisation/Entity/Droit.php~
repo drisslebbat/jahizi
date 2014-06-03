@@ -1,0 +1,65 @@
+<?php
+
+namespace Autorisation\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Droit
+ *
+ * @ORM\Table(name="droit", indexes={@ORM\Index(name="idClass", columns={"idClass"}), @ORM\Index(name="idAgent", columns={"idAgent"})})
+ * @ORM\Entity
+ */
+class Droit
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idAgent", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $idagent;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="droit_create", type="boolean", nullable=false)
+     */
+    private $droitCreate;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="droit_read", type="boolean", nullable=false)
+     */
+    private $droitRead;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="droit_update", type="boolean", nullable=false)
+     */
+    private $droitUpdate;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="droit_delete", type="boolean", nullable=false)
+     */
+    private $droitDelete;
+
+    /**
+     * @var \Autorisation\Entity\Ressource
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Autorisation\Entity\Ressource")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idClass", referencedColumnName="idClass")
+     * })
+     */
+    private $idclass;
+
+
+}

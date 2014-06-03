@@ -7,11 +7,11 @@ namespace Parc\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-// use Auth\Model\Auth;          we don't need the model here we will use Doctrine em 
 use Parc\Entity\Agent; // only for the filters
 use Parc\Form\AgentForm;       // <-- Add this import
 use Parc\Form\AgentFilter;
 use Parc\Entity\Agence;
+use Autorisation\Entity\Droit;
 
 
 class IndexController extends AbstractActionController
@@ -20,9 +20,13 @@ class IndexController extends AbstractActionController
     {
 		$em = $this->getEntityManager();
 		$agents = $em->getRepository('Parc\Entity\Agent')->findAll();
+		foreach ($agents as $agent){
+		$this->initialiseDroits($agent);
+		}
         return new ViewModel(array(
 			'agents'	=> $agents,
 		));
+        
     }
 	
     public function modifierAction()
@@ -141,11 +145,7 @@ class IndexController extends AbstractActionController
 	{
 		$var=$data['usr_password'];
 		$salt=$this->generateDynamicSalt();
-		$pass=$this->encriptPassword(
-				$this->getStaticSalt(),
-				$var,
-				$salt
-		);
+		$pass=$this->encriptPassword($this->getStaticSalt(),$var,$salt);
 		$data['usr_password']=$pass;
 		$data['usrPasswordSalt']=$salt;
 		$data['usr_active']=true;
@@ -245,6 +245,19 @@ class IndexController extends AbstractActionController
 		}
 	
 		return $out;
+	}
+	public function initialiseDroits($agent){
+		$em=$this->getEntityManager();
+		$ressources= $em->getRepository('Autorisation\Entity\Ressource')->findAll();
+		foreach ($ressources as $class){
+			$ligne=new Droit();
+			$ligne->initialiseDroits($agent, $class);
+			$objectManager=$this->getEntityManager();
+			$objectManager->persist($ligne);
+			$objectManager->flush();
+			
+		}
+		
 	}
 	
 }
