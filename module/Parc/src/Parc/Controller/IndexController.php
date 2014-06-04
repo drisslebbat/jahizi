@@ -20,12 +20,12 @@ class IndexController extends AbstractActionController
     {
 		$em = $this->getEntityManager();
 		$agents = $em->getRepository('Parc\Entity\Agent')->findAll();
-		foreach ($agents as $agent){
-		$this->initialiseDroits($agent);
-		}
-        return new ViewModel(array(
-			'agents'	=> $agents,
-		));
+// 		foreach ($agents as $agent){
+// 		$this->initialiseDroits($agent);
+// 		}
+//         return new ViewModel(array(
+// 			'agents'	=> $agents,
+// 		));
         
     }
 	
