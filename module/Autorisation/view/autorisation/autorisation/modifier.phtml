@@ -1,6 +1,8 @@
 <?php
 echo '<h1>Update</h1>';
 $form = $this->form;
+//var_dump($this->classes);
+$droits=$this->classes;
 $form->prepare();
 // Assuming the "contact/process" route exists...
 $form->setAttribute('action', $this->url(Null, array('controller' => 'autorisation', 'action' => 'modifier', 'id' => $id))); //'contact/process'));
@@ -8,5 +10,27 @@ $form->setAttribute('action', $this->url(Null, array('controller' => 'autorisati
 $form->setAttribute('method', 'post');
 
 echo $this->form()->openTag($form);
-echo $this->formCollection($form);
-echo $this->form()->closeTag();
+
+
+?>
+<table class="table table-bordered table-hover">
+	<tr>
+		
+		<th>Ressource</th>
+		<th>Create</th>
+		<th>Read</th>
+		<th>Update</th>
+		<th>Delete</th>
+		
+	</tr>
+<?php foreach ($droits as $droit) { ?>
+	<tr>
+		
+		<td><?php echo $this->escapeHtml($droit->getNomclass());?></td>
+		<td><?php echo $this->formElement($form->get($droit->getNomclass().'c'));?></td>
+		<td><?php echo $this->formElement($form->get($droit->getNomclass().'r'));?></td>
+		<td><?php echo $this->formElement($form->get($droit->getNomclass().'u'));?></td>
+		<td><?php echo $this->formElement($form->get($droit->getNomclass().'d'));?></td>
+	</tr>
+<?php } ?>
+</table>

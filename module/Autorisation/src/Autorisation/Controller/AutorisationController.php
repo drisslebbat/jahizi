@@ -57,27 +57,28 @@ class AutorisationController extends AbstractActionController
     		$form->get($droit->getIdclass()->getNomclass().'c')->setValue(1);
     		}
     		if(!$droit->getDroitCreate()){
-    			$form->get($droit->getIdclass()->getNomclass().'c')->setValue(0);
+    			$form->get($droit->getIdclass()->getNomclass().'r')->setValue(0);
     		}
     		else {
-    			$form->get($droit->getIdclass()->getNomclass().'c')->setValue(1);
+    			$form->get($droit->getIdclass()->getNomclass().'r')->setValue(1);
     		}
     		if(!$droit->getDroitCreate()){
-    			$form->get($droit->getIdclass()->getNomclass().'c')->setValue(0);
+    			$form->get($droit->getIdclass()->getNomclass().'u')->setValue(0);
     		}
     		else {
-    			$form->get($droit->getIdclass()->getNomclass().'c')->setValue(1);
+    			$form->get($droit->getIdclass()->getNomclass().'u')->setValue(1);
     		}
     		if(!$droit->getDroitCreate()){
-    			$form->get($droit->getIdclass()->getNomclass().'c')->setValue(0);
+    			$form->get($droit->getIdclass()->getNomclass().'d')->setValue(0);
     		}
     		else {
-    			$form->get($droit->getIdclass()->getNomclass().'c')->setValue(1);
+    			$form->get($droit->getIdclass()->getNomclass().'d')->setValue(1);
     		}
     	}
     	return new ViewModel(array(
     			'id'=>$id,
     			'form'=>$form,
+    			'classes'=>$classes
     	));
     }
 
@@ -90,7 +91,7 @@ class AutorisationController extends AbstractActionController
    				'name' => $classe->getNomclass().'c',
    				'options' => array(
    						'label' => 'Create',
-   						'use_hidden_element' => true,
+   						'use_hidden_element' => false,
    						'checked_value' => true,
    						'unchecked_value' => false,
    				)
@@ -100,7 +101,7 @@ class AutorisationController extends AbstractActionController
    				'name' => $classe->getNomclass().'r',
    				'options' => array(
    						'label' => 'Read',
-   						'use_hidden_element' => true,
+   						'use_hidden_element' => false,
    						'checked_value' => true,
    						'unchecked_value' => false,
    				)
@@ -120,7 +121,7 @@ class AutorisationController extends AbstractActionController
    				'name' => $classe->getNomclass().'d',
    				'options' => array(
    						'label' => 'Delate',
-   						'use_hidden_element' => true,
+   						'use_hidden_element' => false,
    						'checked_value' => true,
    						'unchecked_value' => false,
    				)
