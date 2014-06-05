@@ -31,8 +31,9 @@ class AutorisationController extends AbstractActionController
 	}
     public function indexAction()
     {
-    	$id = $this->params()->fromRoute('id');
-    	$droits=$this->getEntityManager()->getRepository('Autorisation\Entity\Droit')->findBy(array('idAgent'=>$id));
+    	//$id = $this->params()->fromRoute('id');
+    	$id=1;
+    	$droits=$this->getEntityManager()->getRepository('Autorisation\Entity\Droit')->findBy(array('idagent'=>$id));
     	return new ViewModel(array(
     		'droits'=>$droits,
     			'idAgent'=>$id,
@@ -40,9 +41,44 @@ class AutorisationController extends AbstractActionController
     }
     public function modifierAction()
     {
-    	$id = $this->params()->fromRoute('id');
-    	$droits=$this->getEntityManager()->get('Autorisation\Entity\Droit')->findBy(array('idAgent'=>$id));
+    	//$id = $this->params()->fromRoute('id');
+    	$id=1;
+    	$form=$this->createDroitForm();
     	
+    	$classes=$this->getEntityManager()->getRepository('Autorisation\Entity\Ressource')->findAll();
+    	foreach ($classes as $classe)
+    	{
+    		$droit=$this->getEntityManager()->getRepository('Autorisation\Entity\Droit')->findOneBy(array('idagent'=>$id,'idclass'=>$classe));
+    		
+    		if(!$droit->getDroitCreate()){
+    		$form->get($droit->getIdclass()->getNomclass().'c')->setValue(0);
+    		}
+    		else {
+    		$form->get($droit->getIdclass()->getNomclass().'c')->setValue(1);
+    		}
+    		if(!$droit->getDroitCreate()){
+    			$form->get($droit->getIdclass()->getNomclass().'c')->setValue(0);
+    		}
+    		else {
+    			$form->get($droit->getIdclass()->getNomclass().'c')->setValue(1);
+    		}
+    		if(!$droit->getDroitCreate()){
+    			$form->get($droit->getIdclass()->getNomclass().'c')->setValue(0);
+    		}
+    		else {
+    			$form->get($droit->getIdclass()->getNomclass().'c')->setValue(1);
+    		}
+    		if(!$droit->getDroitCreate()){
+    			$form->get($droit->getIdclass()->getNomclass().'c')->setValue(0);
+    		}
+    		else {
+    			$form->get($droit->getIdclass()->getNomclass().'c')->setValue(1);
+    		}
+    	}
+    	return new ViewModel(array(
+    			'id'=>$id,
+    			'form'=>$form,
+    	));
     }
 
    public function createDroitForm() {
@@ -51,7 +87,7 @@ class AutorisationController extends AbstractActionController
    	foreach ($classes as $classe){
    		$form->add(array(
    				'type' => 'Zend\Form\Element\Checkbox',
-   				'name' => $classe->getNomlass().'c',
+   				'name' => $classe->getNomclass().'c',
    				'options' => array(
    						'label' => 'Create',
    						'use_hidden_element' => true,
@@ -61,7 +97,7 @@ class AutorisationController extends AbstractActionController
    		));
    		$form->add(array(
    				'type' => 'Zend\Form\Element\Checkbox',
-   				'name' => $classe->getNomlass().'r',
+   				'name' => $classe->getNomclass().'r',
    				'options' => array(
    						'label' => 'Read',
    						'use_hidden_element' => true,
@@ -71,7 +107,7 @@ class AutorisationController extends AbstractActionController
    		));
    		$form->add(array(
    				'type' => 'Zend\Form\Element\Checkbox',
-   				'name' => $classe->getNomlass().'u',
+   				'name' => $classe->getNomclass().'u',
    				'options' => array(
    						'label' => 'Update',
    						'use_hidden_element' => true,
@@ -81,7 +117,7 @@ class AutorisationController extends AbstractActionController
    		));
    		$form->add(array(
    				'type' => 'Zend\Form\Element\Checkbox',
-   				'name' => $classe->getNomlass().'d',
+   				'name' => $classe->getNomclass().'d',
    				'options' => array(
    						'label' => 'Delate',
    						'use_hidden_element' => true,

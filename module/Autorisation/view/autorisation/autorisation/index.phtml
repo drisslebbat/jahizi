@@ -1,3 +1,31 @@
-<strong>Module:</strong>        Autorisation &raquo;
-<strong>Controller:</strong>    Autorisation &raquo;
-<strong>Action:</strong>        index
+<h1>I am in ParcModule IndexController indexaction </h1>
+
+
+<?php //var_dump($this->droits); ?>
+
+
+<hr />
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>Agent</th>
+		<th>Ressource</th>
+		<th>Create</th>
+		<th>Read</th>
+		<th>Update</th>
+		<th>Delete</th>
+		
+	</tr>
+<?php foreach ($droits as $droit) { ?>
+	<tr>
+		<td><?php echo $this->escapeHtml($droit->getIdagent());?></td>
+		<td><?php echo $this->escapeHtml($droit->getIdclass()->getNomclass());?></td>
+		
+		
+		<td><?php if($droit->getDroitCreate()){echo $this->escapeHtml('oui');}else{echo $this->escapeHtml('non');}?></td>
+		<td><?php if($droit->getDroitRead()){echo $this->escapeHtml('oui');}else{echo $this->escapeHtml('non');}?></td>
+		<td><?php if($droit->getDroitUpdate()){echo $this->escapeHtml('oui');}else{echo $this->escapeHtml('non');}?></td>
+		<td><?php if($droit->getDroitDelete()){echo $this->escapeHtml('oui');}else{echo $this->escapeHtml('non');}?></td>
+	</tr>
+<?php } ?>
+</table>
+<div><a href="<?php echo $this->url(NULL,array('controller'=>'autorisation', 'action' => 'modifier'));?>">Modifier Droits</a></div>
