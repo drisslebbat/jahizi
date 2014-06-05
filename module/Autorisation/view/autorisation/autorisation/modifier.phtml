@@ -8,6 +8,7 @@ $form->prepare();
 $form->setAttribute('action', $this->url(Null, array('controller' => 'autorisation', 'action' => 'modifier', 'id' => $id))); //'contact/process'));
 // Set the method attribute for the form
 $form->setAttribute('method', 'post');
+$form->get('submit')->setValue('Modifier');
 
 echo $this->form()->openTag($form);
 
@@ -34,3 +35,7 @@ echo $this->form()->openTag($form);
 	</tr>
 <?php } ?>
 </table>
+<div align="right"><?php
+echo $this->formElement($form->get('submit'));
+echo $this->formElementErrors($form->get('submit'));
+?></div>

@@ -11,6 +11,8 @@ namespace Autorisation\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Autorisation\Form\AutorisationForm;
+use Zend\InputFilter\InputFilter;
 use Zend\Form\Form;
 // use Autorisation\Entity\Ressource;
 // use Autorisation;
@@ -43,47 +45,32 @@ class AutorisationController extends AbstractActionController
     {
     	//$id = $this->params()->fromRoute('id');
     	$id=1;
-    	$form=$this->createDroitForm();
     	
     	$classes=$this->getEntityManager()->getRepository('Autorisation\Entity\Ressource')->findAll();
-    	foreach ($classes as $classe)
-    	{
-    		$droit=$this->getEntityManager()->getRepository('Autorisation\Entity\Droit')->findOneBy(array('idagent'=>$id,'idclass'=>$classe));
-    		
-    		if(!$droit->getDroitCreate()){
-    		$form->get($droit->getIdclass()->getNomclass().'c')->setValue(0);
-    		}
-    		else {
-    		$form->get($droit->getIdclass()->getNomclass().'c')->setValue(1);
-    		}
-    		if(!$droit->getDroitCreate()){
-    			$form->get($droit->getIdclass()->getNomclass().'r')->setValue(0);
-    		}
-    		else {
-    			$form->get($droit->getIdclass()->getNomclass().'r')->setValue(1);
-    		}
-    		if(!$droit->getDroitCreate()){
-    			$form->get($droit->getIdclass()->getNomclass().'u')->setValue(0);
-    		}
-    		else {
-    			$form->get($droit->getIdclass()->getNomclass().'u')->setValue(1);
-    		}
-    		if(!$droit->getDroitCreate()){
-    			$form->get($droit->getIdclass()->getNomclass().'d')->setValue(0);
-    		}
-    		else {
-    			$form->get($droit->getIdclass()->getNomclass().'d')->setValue(1);
-    		}
+    	$form=$this->remplireAutorisationForm($classes,$id);
+    	if ($this->getRequest()->isPost()) {
+    		$form->setInputFilter(new InputFilter());
+    		//$form->setData($this->getRequest()->getPost());
+    		//if ($form->isValid()) {
+    			$data = $this->request->getPost();
+    			//$data=$form->getData();
+    			$this->modifierAutorisation($classes, $id, $data);
+    	
+    			return $this->redirect()->toRoute(NULL, array('controller' => 'Autorisation', 'action' => 'index'));
+    		//}
     	}
+    	
+    	
     	return new ViewModel(array(
     			'id'=>$id,
     			'form'=>$form,
     			'classes'=>$classes
     	));
+    	
     }
 
    public function createDroitForm() {
-   	$form=new Form();
+   	$form=new AutorisationForm();
    	$classes=$this->getEntityManager()->getRepository('Autorisation\Entity\Ressource')->findAll();
    	foreach ($classes as $classe){
    		$form->add(array(
@@ -128,6 +115,62 @@ class AutorisationController extends AbstractActionController
    		));
    		
    	}
+   	$form->add(array(
+   			'type' => 'Zend\Form\Element\Submit',
+   			'name' => 'submit',
+   			'options' => array(
+   					'label' => 'OK',
+   			)
+   	));
    	return $form;
+   }
+   public function remplireAutorisationForm($classes,$id) {
+   	$form=$this->createDroitForm();
+   	foreach ($classes as $classe)
+   	{
+   		$droit=$this->getEntityManager()->getRepository('Autorisation\Entity\Droit')->findOneBy(array('idagent'=>$id,'idclass'=>$classe));
+   	
+   		if($droit->getDroitCreate()){
+   			$form->get($droit->getIdclass()->getNomclass().'c')->setValue(1);
+   		}
+   		else {
+   			$form->get($droit->getIdclass()->getNomclass().'c')->setValue(0);
+   		}
+   		if(!$droit->getDroitRead()){
+   			$form->get($droit->getIdclass()->getNomclass().'r')->setValue(0);
+   		}
+   		else {
+   			$form->get($droit->getIdclass()->getNomclass().'r')->setValue(1);
+   		}
+   		if(!$droit->getDroitUpdate()){
+   			$form->get($droit->getIdclass()->getNomclass().'u')->setValue(0);
+   		}
+   		else {
+   			$form->get($droit->getIdclass()->getNomclass().'u')->setValue(1);
+   		}
+   		if(!$droit->getDroitDelete()){
+   			$form->get($droit->getIdclass()->getNomclass().'d')->setValue(0);
+   		}
+   		else {
+   			$form->get($droit->getIdclass()->getNomclass().'d')->setValue(1);
+   		}
+   	}
+   	return $form;
+   	
+   }
+   public function modifierAutorisation($classes,$id,$data) {
+   	$objectManager=$this->getEntityManager();
+   	foreach ($classes as $classe)
+   	{
+   		
+   		$droit=$objectManager->getRepository('Autorisation\Entity\Droit')->findOneBy(array('idagent'=>$id,'idclass'=>$classe));
+   		$droit->setDroitCreate($data[$droit->getIdclass()->getNomclass().'c']);
+   		$droit->setDroitRead($data[$droit->getIdclass()->getNomclass().'c']);
+   		$droit->setDroitUpdate($data[$droit->getIdclass()->getNomclass().'c']);
+   		$droit->setDroitDelete($data[$droit->getIdclass()->getNomclass().'c']);
+   		$objectManager->persist($droit);
+   		
+   	}
+   	$objectManager->flush();
    }
 }
