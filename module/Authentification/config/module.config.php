@@ -7,7 +7,7 @@ return array(
     ),
     'router' => array(
         'routes' => array(
-            'authentication' => array(
+            'authentification' => array(
                 'type'    => 'Literal',
                 'options' => array(
                     // Change this to something specific to your module

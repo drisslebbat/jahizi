@@ -19,6 +19,9 @@ use Parc\Entity\Depenses;
 class DepenseController extends AbstractActionController {
 public function indexAction()
 	{
+		$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+		
 		$em = $this->getEntityManager();
 		$depenses = $em->getRepository('Parc\Entity\Depenses')->findAll();
 		return new ViewModel(array(
@@ -28,6 +31,10 @@ public function indexAction()
 	
 	public function modifierAction()
 	{
+		//Autentification 
+		$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+		
 		$id = $this->params()->fromRoute('id');
 		if (!$id) return $this->redirect()->toRoute('auth-doctrine/default', array('controller' => 'Depense', 'action' => 'Index'));
 		$objectManager=$this->getEntityManager();
@@ -54,6 +61,10 @@ public function indexAction()
 	
 	public function ajouterAction()
 	{
+		//Autentification
+		$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+		
 		$form = new DepenseForm();
 		$request = $this->getRequest();
 		if ($request->isPost()) {
@@ -76,6 +87,10 @@ public function indexAction()
 	
 	public function afficherAction()
 	{
+		//Autentification
+		$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+		
 		$id = (int) $this->params()->fromRoute('id', 0);
 		if ($id) {
 			$objectManager=$this->getEntityManager();
@@ -88,6 +103,10 @@ public function indexAction()
 	}
 	public function supprimerAction()
 	{
+		//Autentification
+		$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+		
 	
 		$id = (int) $this->params()->fromRoute('id', 0);
 		if ($id) {

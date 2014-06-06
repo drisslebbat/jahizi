@@ -23,6 +23,10 @@ class UnclientController extends AbstractActionController
 {
     public function indexAction()
     {
+    	$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+    	if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+    	
+    	
     	$em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 //     	 $clients = $em->getRepository('Clients\Entity\Client')->findBy(array(), array('nom' => 'ASC'));
 		$querybuilder=$em->getRepository('Clients\Entity\Client')->createQueryBuilder('c');
@@ -34,6 +38,9 @@ class UnclientController extends AbstractActionController
     
     public function afficherAction()
     {
+    	$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+    	if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+    	 
     	$id = (int) $this->params()->fromRoute('id');
     	$form=new ClientForm();
     	$objectManager=$this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
@@ -62,6 +69,9 @@ class UnclientController extends AbstractActionController
 	
     public function ajouterAction()
     {
+    	$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+    	if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+    	 
     	$form = new ClientForm();
     	$pos= array();
     	if ($this->request->isPost()) {
@@ -96,6 +106,9 @@ class UnclientController extends AbstractActionController
     
     public function fiabiliteAction()
     {
+    	$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+    	if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+    	 
     	$id = (int) $this->params()->fromRoute('id');
     	$objectManager=$this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
     	$client=$objectManager->find('Clients\Entity\Client',$id);
@@ -131,6 +144,9 @@ class UnclientController extends AbstractActionController
     
     public function modifierAction()
     {
+    	$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+    	if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+    	 
     	$id = (int) $this->params()->fromRoute('id');
     	$form=new ClientForm();
     	$objectManager=$this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
@@ -182,6 +198,9 @@ class UnclientController extends AbstractActionController
     
     public function supprimerAction()
     {
+    	$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+    	if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+    	 
     	$id = (int) $this->params()->fromRoute('id', 0);
     	if ($id) {
     		$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');

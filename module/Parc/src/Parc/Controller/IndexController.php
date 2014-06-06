@@ -1,8 +1,6 @@
 <?php
 namespace Parc\Controller;
 
-// Authentication with Remember Me
-// http://samsonasik.wordpress.com/2012/10/23/zend-framework-2-create-login-authentication-using-authenticationservice-with-rememberme/
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -18,6 +16,10 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
+    	//Autentification
+    	$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+    	if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+    	
 		$em = $this->getEntityManager();
 		$agents = $em->getRepository('Parc\Entity\Agent')->findAll();
 // 		foreach ($agents as $agent){
@@ -31,6 +33,10 @@ class IndexController extends AbstractActionController
 	
     public function modifierAction()
     {
+    	//Autentification
+    	$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+    	if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+    	
     	$id = $this->params()->fromRoute('id');
     	if (!$id) return $this->redirect()->toRoute('auth-doctrine/default', array('controller' => 'Index', 'action' => 'index'));
     	$objectManager=$this->getEntityManager();
@@ -57,6 +63,10 @@ class IndexController extends AbstractActionController
 	
 	public function ajouterAction()
 	{
+		//Autentification
+		$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+		
 		$form = new AgentForm();
 		$request = $this->getRequest();
 		if ($request->isPost()) {
@@ -79,6 +89,10 @@ class IndexController extends AbstractActionController
 
 	public function activeAction()
 	{
+		//Autentification
+		$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+		
 
 		$id = (int) $this->params()->fromRoute('id', 0);
 		if ($id) {
@@ -104,6 +118,10 @@ class IndexController extends AbstractActionController
 	}
 	public function afficherAction()
 	{
+		//Autentification
+		$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+		
 		$id = (int) $this->params()->fromRoute('id', 0);
 		if ($id) {
 			$objectManager=$this->getEntityManager();
@@ -116,6 +134,10 @@ class IndexController extends AbstractActionController
 	}
 	public function supprimerAction() 
 	{
+		//Autentification
+		$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+		
 
 		$id = (int) $this->params()->fromRoute('id', 0);
 		if ($id) {

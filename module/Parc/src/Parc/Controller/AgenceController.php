@@ -19,6 +19,9 @@ use Parc\Form\AgenceFilter;
 class AgenceController extends AbstractActionController {
 	public function indexAction()
 	{
+		$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+		
 		$em = $this->getEntityManager();
 		$agences = $em->getRepository('Parc\Entity\Agence')->findAll();
 		return new ViewModel(array(
@@ -28,6 +31,9 @@ class AgenceController extends AbstractActionController {
 	
 	public function modifierAction()
 	{
+		$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+		
 		$id = $this->params()->fromRoute('id');
 		if (!$id) return $this->redirect()->toRoute('auth-doctrine/default', array('controller' => 'Agence', 'action' => 'Index'));
 		$objectManager=$this->getEntityManager();
@@ -54,6 +60,9 @@ class AgenceController extends AbstractActionController {
 	
 	public function ajouterAction()
 	{
+		$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+		
 		$form = new AgenceForm();
 		$request = $this->getRequest();
 		if ($request->isPost()) {
@@ -76,6 +85,9 @@ class AgenceController extends AbstractActionController {
 	
 	public function afficherAction()
 	{
+		$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+		
 		$id = (int) $this->params()->fromRoute('id', 0);
 		if ($id) {
 			$objectManager=$this->getEntityManager();
@@ -88,6 +100,9 @@ class AgenceController extends AbstractActionController {
 	}
 	public function supprimerAction()
 	{
+		$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Authentification', 'action' => 'login'));
+		
 	
 		$id = (int) $this->params()->fromRoute('id', 0);
 		if ($id) {
