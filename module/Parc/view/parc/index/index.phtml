@@ -1,7 +1,9 @@
 <h1>I am in ParcModule IndexController indexaction </h1>
 
 
-<?php var_dump($this->agents); ?>
+<?php 
+var_dump($this->agents); 
+?>
 
 
 <hr />
@@ -15,6 +17,7 @@
 		<th>&nbsp;</th>
 		<th>&nbsp;</th>
 		<th>&nbsp;</th>
+		<th>Autorisation</th>
 	</tr>
 <?php foreach ($agents as $agent) { ?>
 	<tr>
@@ -33,6 +36,9 @@
 	        </td>
 	        <td>
 	            <a href="<?php echo $this->url(NULL,array('controller'=>'Index', 'action' => 'active', 'id'=>$agent->getIdagent())); ?>">Changer fiabilité</a>
+	        </td>
+	        <td>
+	            <a href="<?php echo $this->url('autorisation/default',array('controller'=>'Autorisation', 'action' => 'index', 'id'=>$agent->getIdagent())); ?>">Autorisations</a>
 	        </td>
 	</tr>
 <?php } ?>

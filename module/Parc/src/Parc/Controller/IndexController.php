@@ -23,9 +23,9 @@ class IndexController extends AbstractActionController
 // 		foreach ($agents as $agent){
 // 		$this->initialiseDroits($agent);
 // 		}
-//         return new ViewModel(array(
-// 			'agents'	=> $agents,
-// 		));
+         return new ViewModel(array(
+ 			'agents'	=> $agents,
+		));
         
     }
 	

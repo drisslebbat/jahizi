@@ -33,8 +33,8 @@ class AutorisationController extends AbstractActionController
 	}
     public function indexAction()
     {
-    	//$id = $this->params()->fromRoute('id');
-    	$id=1;
+    	$id = $this->params()->fromRoute('id');
+    	
     	$droits=$this->getEntityManager()->getRepository('Autorisation\Entity\Droit')->findBy(array('idagent'=>$id));
     	return new ViewModel(array(
     		'droits'=>$droits,
@@ -43,8 +43,7 @@ class AutorisationController extends AbstractActionController
     }
     public function modifierAction()
     {
-    	//$id = $this->params()->fromRoute('id');
-    	$id=1;
+    	$id = $this->params()->fromRoute('id');
     	
     	$classes=$this->getEntityManager()->getRepository('Autorisation\Entity\Ressource')->findAll();
     	$form=$this->remplireAutorisationForm($classes,$id);
@@ -56,7 +55,7 @@ class AutorisationController extends AbstractActionController
     			//$data=$form->getData();
     			$this->modifierAutorisation($classes, $id, $data);
     	
-    			return $this->redirect()->toRoute(NULL, array('controller' => 'Autorisation', 'action' => 'index'));
+    			return $this->redirect()->toRoute(NULL, array('controller' => 'Autorisation', 'action' => 'index','id'=>$id));
     		//}
     	}
     	
@@ -165,9 +164,9 @@ class AutorisationController extends AbstractActionController
    		
    		$droit=$objectManager->getRepository('Autorisation\Entity\Droit')->findOneBy(array('idagent'=>$id,'idclass'=>$classe));
    		$droit->setDroitCreate($data[$droit->getIdclass()->getNomclass().'c']);
-   		$droit->setDroitRead($data[$droit->getIdclass()->getNomclass().'c']);
-   		$droit->setDroitUpdate($data[$droit->getIdclass()->getNomclass().'c']);
-   		$droit->setDroitDelete($data[$droit->getIdclass()->getNomclass().'c']);
+   		$droit->setDroitRead($data[$droit->getIdclass()->getNomclass().'r']);
+   		$droit->setDroitUpdate($data[$droit->getIdclass()->getNomclass().'u']);
+   		$droit->setDroitDelete($data[$droit->getIdclass()->getNomclass().'d']);
    		$objectManager->persist($droit);
    		
    	}
