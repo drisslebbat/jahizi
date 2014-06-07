@@ -1,0 +1,60 @@
+<?php
+
+namespace Admin\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Parc
+ *
+ * @ORM\Table(name="parc")
+ * @ORM\Entity
+ */
+class Parc
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idParc", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idparc;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nomParc", type="string", length=40, nullable=false)
+     */
+    private $nomparc;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_expiration", type="datetime", nullable=true)
+     */
+    private $dateExpiration;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pack", type="integer", nullable=false)
+     */
+    private $pack;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="devis", type="string", length=40, nullable=true)
+     */
+    private $devis;
+
+
+}

@@ -8,7 +8,7 @@ return array(
     		'ZendDeveloperTools',
     		'Clients',
     		'Parc',
-    		'Authentification','Autorisation',
+    		'Authentification','Autorisation','Admin',
     ),
 
     // These are various options for the listeners attached to the ModuleManager
