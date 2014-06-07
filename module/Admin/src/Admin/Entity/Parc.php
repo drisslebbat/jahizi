@@ -99,7 +99,7 @@ class Parc
      */
     public function setDateCreation($dateCreation)
     {
-        $this->dateCreation = $dateCreation;
+        $this->dateCreation =  \DateTime::createFromFormat('Y-m-d',$dateCreation);
     
         return $this;
     }

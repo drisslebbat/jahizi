@@ -41,7 +41,7 @@ class Agent
      *   @ORM\JoinColumn(name="idParc", referencedColumnName="idParc")
      * })
      */
-    private $idparc;s
+    private $idparc;
 
     /**
      * @var string
