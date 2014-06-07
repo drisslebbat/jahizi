@@ -33,6 +33,15 @@ class Agent
      * @ORM\Column(name="nom", type="string", length=254, nullable=false)
      */
     private $nom;
+    /**
+     * @var \Admin\Entity\Parc
+     *
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Parc")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idParc", referencedColumnName="idParc")
+     * })
+     */
+    private $idparc;s
 
     /**
      * @var string
@@ -255,5 +264,30 @@ class Agent
     public function getArrayCopy()
     {
     	return get_object_vars($this);
+    }
+    
+    
+    
+    /**
+     * Set idparc
+     *
+     * @param \Admin\Entity\Parc $idparc
+     * @return Agent
+     */
+    public function setIdparc(\Admin\Entity\Parc $idparc = null)
+    {
+    	$this->idparc = $idparc;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get idparc
+     *
+     * @return \Admin\Entity\Parc
+     */
+    public function getIdparc()
+    {
+    	return $this->idparc;
     }
 }

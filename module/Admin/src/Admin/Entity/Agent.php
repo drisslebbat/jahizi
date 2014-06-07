@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Agent
  *
- * @ORM\Table(name="agent", uniqueConstraints={@ORM\UniqueConstraint(name="AGENT_PK", columns={"idAgent"})})
+ * @ORM\Table(name="agent", uniqueConstraints={@ORM\UniqueConstraint(name="AGENT_PK", columns={"idAgent"})}, indexes={@ORM\Index(name="idParc", columns={"idParc"})})
  * @ORM\Entity
  */
 class Agent
@@ -71,9 +71,12 @@ class Agent
     private $usrActive;
 
     /**
-     * @var integer
+     * @var \Admin\Entity\Parc
      *
-     * @ORM\Column(name="idParc", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Parc")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idParc", referencedColumnName="idParc")
+     * })
      */
     private $idparc;
 
@@ -253,10 +256,10 @@ class Agent
     /**
      * Set idparc
      *
-     * @param integer $idparc
+     * @param \Admin\Entity\Parc $idparc
      * @return Agent
      */
-    public function setIdparc($idparc)
+    public function setIdparc(\Admin\Entity\Parc $idparc = null)
     {
         $this->idparc = $idparc;
     
@@ -266,7 +269,7 @@ class Agent
     /**
      * Get idparc
      *
-     * @return integer 
+     * @return \Admin\Entity\Parc 
      */
     public function getIdparc()
     {
