@@ -3,6 +3,7 @@
 namespace Admin\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Zend\Stdlib\DateTime;
 
 /**
  * Parc
@@ -99,7 +100,7 @@ class Parc
      */
     public function setDateCreation($dateCreation)
     {
-        $this->dateCreation =  \DateTime::createFromFormat('Y-m-d',$dateCreation);
+        $this->dateCreation =  $dateCreation;
     
         return $this;
     }
@@ -122,7 +123,7 @@ class Parc
      */
     public function setDateExpiration($dateExpiration)
     {
-        $this->dateExpiration = $dateExpiration;
+        $this->dateExpiration = \DateTime::createFromFormat('Y-m-d',$dateExpiration);
     
         return $this;
     }
@@ -181,5 +182,17 @@ class Parc
     public function getDevis()
     {
         return $this->devis;
+    }
+    public function create($data) {
+    	$this->setNomparc($data['parc_name']) ;
+    	$this->setDateCreation(new \DateTime()) ;
+    	$this->setDateExpiration($data['date']) ;
+    	$this->setDevis($data['devis']);
+    	$this->setPack($data['num_pack'])  ;
+    
+    }
+    public function getArrayCopy()
+    {
+    	return get_object_vars($this);
     }
 }

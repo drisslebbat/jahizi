@@ -1,3 +1,35 @@
-<strong>Module:</strong>        Admin &raquo;
-<strong>Controller:</strong>    Admin &raquo;
-<strong>Action:</strong>        index
+
+<hr />
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>id parc</th>
+		<th>Nom</th>
+		<th>Date creation</th>
+		<th>pack</th>
+		<th>Devise</th>
+		<th>Date d'expiration</th>
+		<th colspan="3">Operation</th>
+		
+		
+	</tr>
+<?php foreach ($parcs as $parc) { ?>
+	<tr>
+		<td><?php echo $this->escapeHtml($parc->getIdparc());?></td>
+		<td><?php echo $this->escapeHtml($parc->getNomparc());?></td>
+		<td><?php echo $this->escapeHtml($parc->getDateCreation()->format('Y-m-d H:i:s'));?></td>
+		<td><?php echo $this->escapeHtml($parc->getPack());?></td>
+		<td><?php echo $this->escapeHtml($parc->getDevis());?></td>
+		<td><?php echo $this->escapeHtml($parc->getDateExpiration()->format('Y-m-d H:i:s'));?></td>
+		<td><a href="<?php echo $this->url(NULL,array('controller'=>'Admin', 'action' => 'modifier', 'id'=>$parc->getIdparc())); ?>">Edit</a>
+	        </td>
+	        <td>
+	            <a href="<?php echo $this->url(NULL,array('controller'=>'Admin', 'action' => 'afficher', 'id'=>$parc->getIdparc())); ?>">Detail</a>
+	        </td>
+	        <td>
+	            <a href="<?php echo $this->url(NULL,array('controller'=>'Admin', 'action' => 'supprimer', 'id'=>$parc->getIdparc())); ?>" onclick="return confirm('Are you sure?')">Delete</a>
+	        </td>
+	       
+	           
+	</tr>
+<?php } ?>
+</table>

@@ -36,7 +36,7 @@ class ParcForm extends Form
 		$this->add(array(
 				'name' => 'devis',
 				'attributes' => array('type'  => 'text'),
-				'options' => array('label' => 'Devis'),
+				'options' => array('label' => 'Devise'),
 		));
 
 
