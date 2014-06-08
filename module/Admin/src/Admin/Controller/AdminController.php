@@ -38,20 +38,20 @@ class AdminController extends AbstractActionController
     	if (!$auth->hasIdentity()) return $this->redirect()->toRoute('authentification/default', array('controller' => 'Admin', 'action' => 'login'));
     	
     	$id = $this->params()->fromRoute('id');
-    	if (!$id) return $this->redirect()->toRoute('auth-doctrine/default', array('controller' => 'Index', 'action' => 'index'));
+    	if (!$id) return $this->redirect()->toRoute('admin/default', array('controller' => 'Index', 'action' => 'index'));
     	$objectManager=$this->getEntityManager();
     	$parc=$objectManager->find('Admin\Entity\Parc',$id);
     	$form = new ParcForm();
     	$request = $this->getRequest();
     	if ($request->isPost()) {
-    		$form->setInputFilter(new ParcFilter());
+    		$form->setInputFilter(new InputFilter());
     		$form->setData($request->getPost());
     		if ($form->isValid()) {
     			$data = $form->getData();
     			$parc->create($data);
     			$objectManager->persist($parc);
     			$objectManager->flush();
-    			return $this->redirect()->toRoute('auth-doctrine/default', array('controller' => 'Index', 'action' => 'index'));
+    			return $this->redirect()->toRoute('admin/default', array('controller' => 'Admin', 'action' => 'index'));
     		}
     	}
     	else {
