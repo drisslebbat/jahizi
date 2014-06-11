@@ -1,0 +1,84 @@
+
+<div>
+<div>
+<div>
+       <h3>Détail de la voiture <?php echo $vehicule->getMatricule(); ?></h3>
+</div>
+<div>
+ <?php if (isset($vehicule)) : ?>
+                <table class="table">
+                    <thead>
+                    <tr>
+                       <th>Catégorie</th>
+                       <th>Matricule</th>                
+                       <th>Modèle</th>
+                       <th> Disponibilité</th>
+                       <th>Carburant</th>
+                       <th> numchasis</th>
+                       <th> puisfiscal</th>
+                       <th> datemisecirculation</th>
+                       <th> nbreport</th>
+                       <th> dernierKm</th>
+                       <th> concessionnaire</th>
+                       <th> prixachat</th>
+                       <th> remarque</th>
+                       <th> option</th>
+                       <th> souslocation</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                     <tbody>
+                    <tr>
+                    <td><?php if($vehicule->getIdcat()->getIdcat()) echo $vehicule->getIdcat()->getIdcat();?></td>
+                    <td><?php if($vehicule->getMatricule()) echo $vehicule->getMatricule();?></td>
+                    <td><?php if($vehicule->getIdmod()->getNom()) echo $vehicule->getIdmod()->getNom();?></td>
+                    <td><?php if($vehicule->getStatus()) echo $vehicule->getStatus();?></td>
+                    <td><?php if($vehicule->getCarburant()) echo $vehicule->getCarburant();?></td>
+                    <td><?php if($vehicule->getNumchasis()) echo $vehicule->getNumchasis();?></td>
+                    <td><?php if($vehicule->getPuisfiscal()) echo $vehicule->getPuisfiscal();?></td>
+                    <td><?php if($vehicule->getDatemisecirculation()->format('d/m/Y ')) echo $vehicule->getDatemisecirculation()->format('d/m/Y ');?></td>
+                    <td><?php if($vehicule->getNbreport()) echo $vehicule->getNbreport();?></td>
+                    <td><?php if($vehicule->getDernierKm()) echo $vehicule->getDernierKm();?></td>
+                    <td><?php if($vehicule->getConcessionnaire()) echo $vehicule->getConcessionnaire();?></td>
+                    <td><?php if($vehicule->getPrixachat()) echo $vehicule->getPrixachat();?></td>
+                    <td><?php if($vehicule->getRemarque()) echo $vehicule->getRemarque();?></td>
+                    <td><?php if($vehicule->getIdoptveh()){  $opt=$vehicule->getIdoptveh();
+                               foreach ($opt as $o){
+                               echo $o->getLibellee();}}
+                     ?></td>
+                    <td><?php echo $vehicule->getSouslocation(); ?></td>
+                     <td>
+                            <a href="<?php echo $this->url('vehicules/default', array('controller'=>'vehicules','action'=>'edit', 'id' => $vehicule->getIdveh()));?>">Edit</a> |
+                            <a href="<?php echo $this->url('vehicules/default', array('controller'=>'vehicules','action'=>'delete', 'id' => $vehicule->getIdveh()));?>">Delete</a>
+                        </td>
+                    </tr>
+                     </tbody>
+                     </table>
+<br/>
+
+<br/>
+     <div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Addass', 'id' => $vehicule->getIdveh()));?>">ajouter assurance</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Addauto', 'id' => $vehicule->getIdveh()))?>">ajouter autorisation</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Addcarb', 'id' => $vehicule->getIdveh()));?>">ajouter carburant</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Addinc', 'id' => $vehicule->getIdveh()));?>">ajouter incident</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Addpiece', 'id' => $vehicule->getIdveh()));?>">ajouter piece consommable</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Addrep', 'id' => $vehicule->getIdveh()));?>">ajouter reparation</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Addvid', 'id' => $vehicule->getIdveh()));?>">ajouter vidange</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Addvign', 'id' => $vehicule->getIdveh()));?>">ajouter vignette</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Addvisit', 'id' => $vehicule->getIdveh()));?>">ajouter visit techniq</a></div>
+  
+  
+      <br/><br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Listerass', 'id' => $vehicule->getIdveh()));?>">Lister assurance</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Listerauto', 'id' => $vehicule->getIdveh()))?>">Lister autorisation</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Listercarb', 'id' => $vehicule->getIdveh()));?>">Lister carburant</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Listerinc', 'id' => $vehicule->getIdveh()));?>">Lister incident</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Listerpiece', 'id' => $vehicule->getIdveh()));?>">Lister piece consommable</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Listerrep', 'id' => $vehicule->getIdveh()));?>">Lister reparation</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Listervid', 'id' => $vehicule->getIdveh()));?>">Lister vidange</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Listervign', 'id' => $vehicule->getIdveh()));?>">Lister vignette</a></div>
+<br/><div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'Listervisit', 'id' => $vehicule->getIdveh()));?>">Lister visit techniq</a></div>
+</div>
+                   
+                <?php endif; ?>
+            </div>
+        </div>        

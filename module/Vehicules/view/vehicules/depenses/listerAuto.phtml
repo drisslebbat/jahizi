@@ -1,0 +1,44 @@
+
+ <?php if (isset($rep)) : ?>
+                <table class="table">
+                    <thead> 
+                    <tr>  
+                       <th>num</th>     
+                       <th>datedebut</th>
+                       <th>dateexp</th>
+                    </tr>
+                    </thead>
+                <?php foreach($rep as $r): ?>
+                    <tbody>
+                    <tr>
+                        <td><?php echo $r->getNum(); ?></td>
+                        <td><?php echo $r->getDatedebut()->format('d/m/Y '); ?></td>
+                        <td><?php echo $r->getDateexp()->format('d/m/Y '); ?></td>
+                        <td> 
+                            <a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'editAuto','id' => $r->getIdaut()));?>">Edit</a> |
+                            <a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'deleteAuto','id' =>$r->getIdaut()));?>">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+            
+                <?php endforeach; ?>
+                </table>
+                <?php endif; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

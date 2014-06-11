@@ -1,0 +1,51 @@
+<div>
+<div>
+<div>
+<div>
+<h3>liste des véhicules</h3>
+</div>
+<div>
+
+<div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'vehicules','action'=>'Vehlibre'));?>">liste des Vehicules libres</a></div>
+<div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'vehicules','action'=>'Vehreserve'))?>">liste des Vehicules reservés</a></div>
+<div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'vehicules','action'=>'Vehindisponible'));?>">liste des Vehicules indisponibles</a></div>
+<div><a href="<?php echo $this->url('vehicules/default', array('controller'=>'vehicules','action'=>'Vehhorservic'));?>">liste des Vehicules hors service</a></div>
+
+                <?php if (isset($vehicules)) : ?>
+                <table class="table">
+                    <thead>
+                    <tr>
+                    <th>Catégorie</th>
+                       <th>Matricule</th>
+                       <th>Modèle</th>
+                       <th>Carburant</th>
+
+                       <th> Disponibilité</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                <?php foreach($vehicules as $v):?>
+              
+                         
+                       
+                       
+                    <tbody>
+                    <tr>
+                     <td><a href="<?php echo $this->url('vehicules/default', array('controller'=>'vehicules','action'=>'ind', 'id' => $v->getIdveh()));?>"><?php if($v->getIdcat()->getIdcat()) echo $v->getIdcat()->getIdcat(); ?></a> </td>
+                    <td><a href="<?php echo $this->url('vehicules/default', array('controller'=>'vehicules','action'=>'ind', 'id' => $v->getIdveh()));?>"><?php if($v->getMatricule()) echo $v->getMatricule(); ?></a> </td>
+                     <td><a href="<?php echo $this->url('vehicules/default', array('controller'=>'vehicules','action'=>'ind', 'id' => $v->getIdveh()));?>"><?php if($v->getIdmod()->getNom()) echo $v->getIdmod()->getNom(); ?></a> </td>
+                        <td><a href="<?php echo $this->url('vehicules/default', array('controller'=>'vehicules','action'=>'ind', 'id' => $v->getIdveh()));?>"><?php echo $v->getCarburant(); ?></a></td>
+                        <td><a href="<?php echo $this->url('vehicules/default', array('controller'=>'vehicules','action'=>'ind', 'id' => $v->getIdveh()));?>"><?php echo $v->getStatus();?></a></td>
+                        <td>
+                            <a href="<?php echo $this->url('vehicules/default', array('controller'=>'vehicules','action'=>'edit', 'id' => $v->getIdveh()));?>">Edit</a> |
+                            <a href="<?php echo $this->url('vehicules/default', array('controller'=>'vehicules','action'=>'delete', 'id' => $v->getIdveh()));?>">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                <?php endforeach; ?>
+                </table>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

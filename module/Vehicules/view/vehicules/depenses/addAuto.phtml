@@ -1,0 +1,40 @@
+<section class="add">
+<h2><?php echo 'Ajouter autorisation'; ?></h2>
+<?php if ($this->error): ?>
+<p class="error">
+There were one or more issues with your submission.
+Please correct them as
+indicated below.
+</p>
+<?php endif ?>
+<?php
+$form = $this->form;
+$form->prepare();
+$form->setAttribute('action', $this->url(NULL,
+array('controller'=>'depenses', 'action' => 'addauto','id' => $this->id)));
+$form->setAttribute('method', 'post');
+echo $this->form()->openTag($form);
+?>
+<dl class="zend_form">
+<dt><?php echo $this->formLabel($form->get('num')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('num'));
+echo $this->formElementErrors($form->get('num'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('datedebut')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('datedebut'));
+echo $this->formElementErrors($form->get('datedebut'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get("dateexp")); ?></dt>
+<dd><?php
+echo $this->formElement($form->get("dateexp"));
+echo $this->formElementErrors($form->get("dateexp"));
+?></dd>
+<dd><?php
+echo $this->formElement($form->get('submit'));
+echo $this->formElementErrors($form->get('submit'));
+?></dd>
+</dl>
+<?php echo $this->form()->closeTag() ?>
+</section>

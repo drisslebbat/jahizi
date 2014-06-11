@@ -1,0 +1,24 @@
+ <?php if (isset($options)) : ?>
+                <table class="table">
+                    <thead>
+                    <tr>
+                       <th>Libellee</th>
+                        <th>Remarque</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                <?php foreach($options as $v): ?>
+                    <tbody>
+                    <tr>
+                        <td><?php echo $v->getLibellee(); ?></td>
+                        <td><?php echo $v->getRemarques(); ?></td>
+                        <td> 
+                            <a href="<?php echo $this->url('vehicules/default', array('controller'=>'option','action'=>'edit','id' => $v->getIdoptveh()));?>">Edit</a> |
+                            <a href="<?php echo $this->url('vehicules/default', array('controller'=>'option','action'=>'delete','id' =>$v->getIdoptveh()));?>">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+            
+                <?php endforeach; ?>
+                </table>
+                <?php endif; ?>

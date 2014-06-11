@@ -1,0 +1,85 @@
+<section class="add">
+<h2><?php echo 'Ajouter Vidange'; ?></h2>
+<?php if ($this->error): ?>
+<p class="error">
+There were one or more issues with your submission.
+Please correct them as
+indicated below.
+</p>
+<?php endif ?>
+<?php
+$form = $this->form;
+$form->prepare();
+$form->setAttribute('action', $this->url(NULL,
+array('controller'=>'depenses', 'action' => 'addvid','id' => $this->id)));
+$form->setAttribute('method', 'post');
+echo $this->form()->openTag($form);
+?>
+<dl class="zend_form">
+<dt><?php echo $this->formLabel($form->get('datevidange')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('datevidange'));
+echo $this->formElementErrors($form->get('datevidange'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('km')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('km'));
+echo $this->formElementErrors($form->get('km'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('kmprochain')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('kmprochain'));
+echo $this->formElementErrors($form->get('kmprochain'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('options')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('options'));
+echo $this->formElementErrors($form->get('options'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('garage')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('garage'));
+echo $this->formElementErrors($form->get('garage'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get("coogarage")); ?></dt>
+<dd><?php
+echo $this->formElement($form->get("coogarage"));
+echo $this->formElementErrors($form->get("coogarage"));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('montant')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('montant'));
+echo $this->formElementErrors($form->get('montant'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('datepaiement')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('datepaiement'));
+echo $this->formElementErrors($form->get('datepaiement'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('modereg')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('modereg'));
+echo $this->formElementErrors($form->get('modereg'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('numcheq')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('numcheq'));
+echo $this->formElementErrors($form->get('numcheq'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('banque')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('banque'));
+echo $this->formElementErrors($form->get('banque'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('remarque')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('remarque'));
+echo $this->formElementErrors($form->get('remarque'));
+?></dd>
+<dd><?php
+echo $this->formElement($form->get('submit'));
+echo $this->formElementErrors($form->get('submit'));
+?></dd>
+</dl>
+<?php echo $this->form()->closeTag() ?>
+</section>

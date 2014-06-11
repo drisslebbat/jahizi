@@ -1,0 +1,43 @@
+ <?php if (isset($rep)) : ?>
+                <table class="table">
+                    <thead>
+                    <tr> 
+                       <th>datevidange</th>
+                        <th>garage</th>
+                        <th>coogarage</th>
+                        <th>km</th>
+                        <th>kmprochain</th>
+                        <th>options</th>
+                        <th>montant</th>
+                        <th>datepaiement</th>
+                        <th>modereg</th>
+                        <th>numcheq</th>
+                        <th>banque</th>
+                        <th>remarque</th>
+                    </tr>
+                    </thead>
+                <?php foreach($rep as $r): ?>
+                    <tbody>
+                    <tr>
+                        <td><?php echo $r->getDatevidange()->format('d/m/Y '); ?></td>
+                        <td><?php echo $r->getGarage(); ?></td>
+                        <td><?php echo $r->getCoogarage(); ?></td>
+                        <td><?php echo $r->getKm(); ?></td>
+                        <td><?php echo $r->getKmprochain(); ?></td>
+                        <td><?php echo $r->getOptions(); ?></td>
+                        <td><?php echo $r->getMontant(); ?></td>
+                        <td><?php echo $r->getDatepaiement()->format('d/m/Y '); ?></td>
+                        <td><?php echo $r->getModereg(); ?></td>
+                        <td><?php echo $r->getNumcheq(); ?></td>
+                        <td><?php echo $r->getBanque(); ?></td>
+                        <td><?php echo $r->getRemarque(); ?></td>
+                        <td> 
+                            <a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'editrep','id' => $r->getIdvidange()));?>">Edit</a> |
+                            <a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'deleterep','id' =>$r->getIdvidange()));?>">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+            
+                <?php endforeach; ?>
+                </table>
+                <?php endif; ?>

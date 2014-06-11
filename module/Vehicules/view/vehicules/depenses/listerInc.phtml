@@ -1,0 +1,31 @@
+ <?php if (isset($rep)) : ?>
+                <table class="table">
+                    <thead>      
+                    <tr> 
+                       <th>nrpolice</th>
+                        <th>nrpv</th>
+                        <th>dateincident</th>
+                        <th>garage</th>
+                        <th>expert</th>
+                        <th>remarques</th>
+                    </tr>
+                    </thead>
+                <?php foreach($rep as $r): ?>
+                    <tbody>
+                    <tr>
+                        <td><?php echo $r->getNrpolice(); ?></td>
+                        <td><?php echo $r->getNrpv(); ?></td>
+                        <td><?php echo $r->getDateincident()->format('d/m/Y '); ?></td>
+                        <td><?php echo $r->getGarage(); ?></td>
+                        <td><?php echo $r->getExpert(); ?></td>
+                        <td><?php echo $r->getRemarques(); ?></td>
+                        <td> 
+                            <a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'editInc','id' => $r->getIdincid()));?>">Edit</a> |
+                            <a href="<?php echo $this->url('vehicules/default', array('controller'=>'depenses','action'=>'deleteInc','id' =>$r->getIdincid()));?>">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+            
+                <?php endforeach; ?>
+                </table>
+                <?php endif; ?>

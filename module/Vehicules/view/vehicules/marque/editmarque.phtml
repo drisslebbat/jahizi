@@ -1,0 +1,38 @@
+<section class="option">
+<h2><?php echo $this->translate('Ajouter marque'); ?></h2>
+<?php if ($this->error): ?>
+<p class="error">
+There were one or more issues with your submission.
+Please correct them as
+indicated below.
+</p>
+<?php endif ?>
+<?php
+$form = $this->form;
+$form->prepare();
+$form->setAttribute('action', $this->url(NULL,
+array('controller'=>'marque', 'action' => 'editmarque','id'  => $this->id)));
+$form->setAttribute('method', 'post');
+echo $this->form()->openTag($form);
+?>
+<dl class="zend_form">
+<dt><?php echo $this->formLabel($form->get('nom')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('nom'));
+echo $this->formElementErrors($form->get('nom'));
+?></dd>
+
+<dt><?php echo $this->formLabel($form->get('annee')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('annee'));
+echo $this->formElementErrors($form->get('annee'));
+?></dd>
+
+
+<dd><?php
+echo $this->formElement($form->get('submit'));
+echo $this->formElementErrors($form->get('submit'));
+?></dd>
+</dl>
+<?php echo $this->form()->closeTag() ?>
+</section>

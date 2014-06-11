@@ -1,0 +1,25 @@
+ <?php if (isset($rep)) : ?>
+                <table class="table">
+                    <thead>      
+                    <tr> 
+                       <th>nom</th>
+                        <th>annee</th>
+                       <th>marque</th>
+                    </tr>
+                    </thead>
+                <?php foreach($rep as $r): ?>
+                    <tbody>
+                    <tr>
+                        <td><?php echo $r->getNom(); ?></td>
+                        <td><?php echo $r->getAnnee(); ?></td>
+                        <td><?php echo $r->getIdmarq()->getNom(); ?></td>
+                        <td> 
+                            <a href="<?php echo $this->url('vehicules/default', array('controller'=>'modele','action'=>'editmodele','id' => $r->getIdmod()));?>">Edit</a> |
+                            <a href="<?php echo $this->url('vehicules/default', array('controller'=>'modele','action'=>'deletemodele','id' =>$r->getIdmod()));?>">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+            
+                <?php endforeach; ?>
+                </table>
+                <?php endif; ?>

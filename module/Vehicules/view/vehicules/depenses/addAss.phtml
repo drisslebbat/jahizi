@@ -1,0 +1,75 @@
+<section class="add">
+<h2><?php echo 'Ajouter Assurance'; ?></h2>
+<?php if ($this->error): ?>
+<p class="error">
+There were one or more issues with your submission.
+Please correct them as
+indicated below.
+</p>
+<?php endif ?>
+<?php
+$form = $this->form;
+$form->prepare();
+$form->setAttribute('action', $this->url(NULL,
+array('controller'=>'depenses', 'action' => 'processass','id' => $this->id)));
+$form->setAttribute('method', 'post');
+echo $this->form()->openTag($form);
+?>
+<dl class="zend_form">
+<dt><?php echo $this->formLabel($form->get('assureur')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('assureur'));
+echo $this->formElementErrors($form->get('assureur'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('cordassureur')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('cordassureur'));
+echo $this->formElementErrors($form->get('cordassureur'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('datedebut')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('datedebut'));
+echo $this->formElementErrors($form->get('datedebut'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get("dateexp")); ?></dt>
+<dd><?php
+echo $this->formElement($form->get("dateexp"));
+echo $this->formElementErrors($form->get("dateexp"));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('montant')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('montant'));
+echo $this->formElementErrors($form->get('montant'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('datepaiement')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('datepaiement'));
+echo $this->formElementErrors($form->get('datepaiement'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('modereg')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('modereg'));
+echo $this->formElementErrors($form->get('modereg'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('numcheq')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('numcheq'));
+echo $this->formElementErrors($form->get('numcheq'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('banque')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('banque'));
+echo $this->formElementErrors($form->get('banque'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('remarque')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('remarque'));
+echo $this->formElementErrors($form->get('remarque'));
+?></dd>
+<dd><?php
+echo $this->formElement($form->get('submit'));
+echo $this->formElementErrors($form->get('submit'));
+?></dd>
+</dl>
+<?php echo $this->form()->closeTag() ?>
+</section>
